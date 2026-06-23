@@ -1,0 +1,44 @@
+{
+	"stomp-1": {
+		"subtitle": "sound.nano.stomp-1",
+		"sounds": [
+			"nano:stomp-1"
+		]
+	},
+	"stomp-2": {
+		"subtitle": "sound.nano.stomp-2",
+		"sounds": [
+			"nano:stomp-2"
+		]
+	},
+	"stomp-3": {
+		"subtitle": "sound.nano.stomp-3",
+		"sounds": [
+			"nano:stomp-3"
+		]
+	},
+	"growth-1": {
+		"subtitle": "sound.nano.growth-1",
+		"sounds": [
+			"nano:growth-1"
+		]
+	},
+	"growth-2": {
+		"subtitle": "sound.nano.growth-2",
+		"sounds": [
+			"nano:growth-2"
+		]
+	},
+	"long-growth-1": {
+		"subtitle": "sound.nano.long-growth-1",
+		"sounds": [
+			"nano:long-growth-1"
+		]
+	},
+	"long-growth-2": {
+		"subtitle": "sound.nano.long-growth-2",
+		"sounds": [
+			"nano:long-growth-2"
+		]
+	}
+}

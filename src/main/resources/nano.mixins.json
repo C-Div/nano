@@ -1,0 +1,32 @@
+{
+    "required": true,
+    "package": "cdiv.nano.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "DebugMixin",
+        "EntityCollidesWithEntityMixin",
+        "EntityDropItemMixin",
+        "EntityDropLootMixin",
+        "EntityDropXpMixin",
+        "EntityStepSoundMixin",
+        "PlayerEntityDropItemMixin",
+        "PlayerEntityFoodScaling",
+        "addition.PlayerMovementMixin",
+        "crafting.FurnaceSmeltResultMixin",
+        "crafting.ItemStackCraftedMixin",
+        "pathfinding.FuzzyPositionsTowardScalingMixin",
+        "pathfinding.FuzzyTargetingScalingMixin",
+        "pathfinding.LookAtEntityGoalScalingMixin",
+        "pathfinding.NoPenaltyTargetingScalingMixin",
+        "pathfinding.WanderAroundFarGoalScalingMixin",
+        "pathfinding.animal.AnimalMateGoalScalingMixin",
+        "pathfinding.animal.FollowParentGoalScalingMixin",
+        "pathfinding.animal.TemptGoalScalingMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
+	}
+}

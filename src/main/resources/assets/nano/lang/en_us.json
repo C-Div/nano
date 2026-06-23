@@ -1,0 +1,21 @@
+{
+    "key.category.nano": "Nano",
+    "key.nano.debug1": "Open Roleplay Gui",
+
+    "screen.roleplay.button.spurt.text": "Spurt",
+
+    "screen.roleplay.spurt.button.save.text": "Save",
+    "screen.roleplay.spurt.button.mode.prefix": "Mode",
+
+    "component.nano.item_scale.tooltip": "Scale: %1$s",
+    "commands.nano.nano.fail": "No nano commands have been registered! Did you forget to add the mod nano-commands?",
+    "commands.nano.nano.success": "Mod nano-commands is successfully installed",
+
+    "sound.nano.stomp-1": "Stomp",
+    "sound.nano.stomp-2": "Stomp",
+    "sound.nano.stomp-3": "Stomp",
+    "sound.nano.growth-2": "Growth",
+    "sound.nano.growth-3": "Growth",
+    "sound.nano.long-growth-1": "Long Growth",
+    "sound.nano.long-growth-2": "Long Growth"
+}

@@ -1,0 +1,49 @@
+{
+	"schemaVersion": 1,
+	"id": "nano",
+	"version": "${version}",
+	"name": "Nano",
+	"description": "Adds size related interactions whilst trying to be survival friendly",
+	"authors": [
+		"CDiv"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "GPL-3.0-or-later",
+	"icon": "assets/nano/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"cdiv.nano.Nano"
+		],
+		"client": [
+			"cdiv.nano.client.NanoClient"
+		],
+		"fabric-datagen": [
+			"cdiv.nano.client.NanoDataGenerator"
+		]
+	},
+	"mixins": [
+		"nano.mixins.json",
+		{
+			"config": "nano.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"accessWidener": "nano.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.14.20",
+		"minecraft": ">=1.21 <=1.21.1",
+		"java": ">=21",
+		"fabric-api": ">=0.116.1",
+		"pehkui": "3.8.3"
+	},
+	"recommends": {
+		"modelfix": "*"
+	},
+	"conflicts": {
+		"scopic": "*"
+	}
+}

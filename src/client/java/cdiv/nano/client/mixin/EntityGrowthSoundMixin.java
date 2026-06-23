@@ -5,9 +5,10 @@ import cdiv.nano.client.api.config.Sound;
 import cdiv.nano.client.sounds.GrowthSound;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.PositionedSoundInstance;
+import net.minecraft.client.sound.MovingSoundInstance;
 import net.minecraft.client.sound.SoundManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import org.jetbrains.annotations.Nullable;
@@ -32,7 +33,7 @@ public abstract class EntityGrowthSoundMixin {
     @Shadow
     public abstract float getTargetScale();
 
-    @Unique public PositionedSoundInstance nano$growthSound = null;
+    @Unique public MovingSoundInstance nano$growthSound = null;
 
     @Inject(
         method = "tick()V",
@@ -65,7 +66,14 @@ public abstract class EntityGrowthSoundMixin {
                 : Sounds.getRandomShortGrowthSound();
         } while(nano$growthSound != null && sound.getId() == nano$growthSound.getId());
 
-        nano$growthSound = new GrowthSound(sound, SoundCategory.MASTER, entity);
+        SoundCategory category = SoundCategory.NEUTRAL;
+
+        if ((entity.isPlayer()))
+            category = SoundCategory.PLAYERS;
+        else if (entity instanceof HostileEntity)
+            category = SoundCategory.HOSTILE;
+
+        nano$growthSound = new GrowthSound(sound, category, entity);
         soundManager.play(nano$growthSound);
     }
 }

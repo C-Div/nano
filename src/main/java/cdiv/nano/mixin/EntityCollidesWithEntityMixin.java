@@ -26,7 +26,11 @@ public class EntityCollidesWithEntityMixin {
 		if (entity.getWorld().isClient
 			|| entity.isDead()
 			|| other == entity // Yes this is a real thing that we have to check
+			|| Stepping.immuneEntities.contains(other.getType())
 			|| !Mixin.isEntityMoving(entity))
+			return;
+
+		if (other instanceof LivingEntity otherAsLiving && (!otherAsLiving.canTakeDamage() || otherAsLiving.isDead()))
 			return;
 
 		EntityDimensions dimensions = entity.getDimensions(entity.getPose());

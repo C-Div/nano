@@ -19,6 +19,7 @@ repositories {
 
 	maven { url "https://maven.ryanliptak.com/" }
 	maven { url "https://maven.shedaniel.me/" }
+	maven { url = "https://api.modrinth.com/maven" }
 }
 
 loom {
@@ -57,6 +58,7 @@ dependencies {
 	}
 
 	modLocalRuntime("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}")
+	modCompileOnly("maven.modrinth:${project.firstpersonmodel_modrinth_id}:${project.firstpersonmodel_modrinth_version}")
 
     modApi("com.github.Virtuoel:Pehkui:${pehkui_version}", {
         exclude group: "net.fabricmc.fabric-api"

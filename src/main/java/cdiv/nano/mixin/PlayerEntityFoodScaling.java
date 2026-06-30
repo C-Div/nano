@@ -4,10 +4,12 @@ import cdiv.nano.Components;
 import cdiv.nano.DamageSources;
 import cdiv.nano.api.config.Food;
 import cdiv.nano.helper.Mixin;
+import cdiv.nano.registry.Registries;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.HungerManager;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Shadow;
@@ -35,6 +37,11 @@ public abstract class PlayerEntityFoodScaling {
     )
     public void nano$eatFood$foodScaler(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<ItemStack> callbackInfoReturnable) {
         if (!Food.foodScalingEnabled.get() || (!Food.foodSaturationScalingEnabled.get() && !Food.foodNutritionScalingEnabled.get()))
+            return;
+
+        Item item = stack.getItem();
+
+        if (cdiv.nano.helper.Item.isModdedItem(item) && !Registries.FoodScaling.has(item))
             return;
 
         Entity entity = Mixin.asEntity(this);

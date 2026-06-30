@@ -7,7 +7,9 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.OptionalDouble;
@@ -57,5 +59,24 @@ public class Item {
     @Deprecated
     public static OptionalDouble getAttackDamage(ItemStack stack) {
         return getFinalAttributeValue(stack, EntityAttributes.GENERIC_ATTACK_DAMAGE);
+    }
+
+    public static boolean isVanillaItem(net.minecraft.item.Item item) {
+        Identifier identifier = Registries.ITEM.getId(item);
+        return identifier.getNamespace().equals("minecraft");
+    }
+
+    @SuppressWarnings("unused")
+    public static boolean isVanillaItem(ItemStack itemStack) {
+        return isVanillaItem(itemStack.getItem());
+    }
+
+    public static boolean isModdedItem(net.minecraft.item.Item item) {
+        return !isVanillaItem(item);
+    }
+
+    @SuppressWarnings("unused")
+    public static boolean isModdedItem(ItemStack itemStack) {
+        return isModdedItem(itemStack.getItem());
     }
 }

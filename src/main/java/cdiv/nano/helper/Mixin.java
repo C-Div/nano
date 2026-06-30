@@ -11,8 +11,6 @@ import net.minecraft.entity.passive.StriderEntity;
 import net.minecraft.entity.passive.TurtleEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import org.jetbrains.annotations.Nullable;
@@ -32,10 +30,6 @@ public class Mixin {
         return (LivingEntity) object;
     }
 
-    public static MobEntity asMobEntity(Object object) {
-        return (MobEntity) object;
-    }
-
     public static ItemStack asItemStack(Object object) {
         return (ItemStack) object;
     }
@@ -45,6 +39,7 @@ public class Mixin {
      * @param entity The entity
      * @return The float constant
      */
+    @SuppressWarnings("unused")
     public static float getBaseStepDistanceAddend(Entity entity) {
         if (entity instanceof StriderEntity)
             return 0.6F;
@@ -56,15 +51,6 @@ public class Mixin {
         return 1.0F;
     }
 
-    public static boolean isVanillaEntity(Entity entity) {
-        Identifier identifier = Registries.ENTITY_TYPE.getId(entity.getType());
-        return identifier.getNamespace().equals("minecraft");
-    }
-
-    public static boolean isModdedEntity(Entity entity) {
-        return !isVanillaEntity(entity);
-    }
-
     public static boolean isEntityMoving(Entity entity) {
         if (entity instanceof MobEntity mob)
             return !mob.getNavigation().isIdle() || mob.getMoveControl().isMoving();
@@ -74,22 +60,23 @@ public class Mixin {
         return false;
     }
 
+    @SuppressWarnings("unused")
     public static boolean isPathfindingScalingAllowed(Entity entity) {
         return Pathfinding.pathfindingScalingEnabled.get()
-            && (!Mixin.isModdedEntity(entity)
+            && (!cdiv.nano.helper.Entity.isModdedEntity(entity)
             || cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
     public static boolean isPathfindingScalingDisallowed(Entity entity) {
         return !Pathfinding.pathfindingScalingEnabled.get()
-            || (Mixin.isModdedEntity(entity)
+            || (cdiv.nano.helper.Entity.isModdedEntity(entity)
             && !cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
     public static boolean isPathfindingMinimumScalingDisallowed(Entity entity) {
         return !Pathfinding.pathfindingScalingEnabled.get()
             || !Pathfinding.pathfindingMinimumScalingEnabled.get()
-            || (Mixin.isModdedEntity(entity)
+            || (cdiv.nano.helper.Entity.isModdedEntity(entity)
             && !cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
@@ -112,11 +99,13 @@ public class Mixin {
 
         public DoubleReference() {}
 
+        @SuppressWarnings("unused")
         public DoubleReference(double value) {
             this.initialized = true;
             this.value = value;
         }
 
+        @SuppressWarnings("unused")
         public boolean isInitialized() {
             return this.initialized;
         }
@@ -136,11 +125,14 @@ public class Mixin {
         private boolean initialized = false;
 
         public FloatReference() {}
+
+        @SuppressWarnings("unused")
         public FloatReference(float value) {
             this.initialized = true;
             this.value = value;
         }
 
+        @SuppressWarnings("unused")
         public boolean isInitialized() {
             return this.initialized;
         }
@@ -160,11 +152,14 @@ public class Mixin {
         private boolean initialized = false;
 
         public IntReference() {}
+
+        @SuppressWarnings("unused")
         public IntReference(int value) {
             this.initialized = true;
             this.value = value;
         }
 
+        @SuppressWarnings("unused")
         public boolean isInitialized() {
             return this.initialized;
         }

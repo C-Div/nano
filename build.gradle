@@ -16,6 +16,9 @@ repositories {
 		name = "JitPack"
         url = "https://jitpack.io"
     }
+
+	maven { url "https://maven.ryanliptak.com/" }
+	maven { url "https://maven.shedaniel.me/" }
 }
 
 loom {
@@ -45,6 +48,15 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+	modCompileOnly("squeek.appleskin:appleskin-fabric:${project.appleskin_version}:api") {
+		transitive = false
+	}
+
+	modLocalRuntime("squeek.appleskin:appleskin-fabric:${project.appleskin_version}") {
+		exclude module: 'modmenu'
+	}
+
+	modLocalRuntime("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}")
 
     modApi("com.github.Virtuoel:Pehkui:${pehkui_version}", {
         exclude group: "net.fabricmc.fabric-api"

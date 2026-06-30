@@ -1,9 +1,12 @@
 package cdiv.nano.client;
 
 import cdiv.nano.Components;
+import cdiv.nano.client.api.config.FirstPersonModel;
 import cdiv.nano.client.api.config.Keybinding;
 import cdiv.nano.client.api.NanoClientIntegration;
 import cdiv.nano.client.screens.roleplay.RoleplayScreen;
+import dev.tr7zw.firstperson.api.FirstPersonAPI;
+import dev.tr7zw.firstperson.api.PlayerOffsetHandler;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
@@ -13,7 +16,9 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Vec3d;
 import org.lwjgl.glfw.GLFW;
+import virtuoel.pehkui.api.ScaleTypes;
 
 public class NanoClient implements ClientModInitializer {
 	@Override
@@ -33,6 +38,13 @@ public class NanoClient implements ClientModInitializer {
 				.translatable("component.nano.item_scale.tooltip", scale)
 				.formatted(Formatting.GRAY));
 		});
+
+		FirstPersonAPI.registerPlayerHandler(((PlayerOffsetHandler) (player, delta, zero, offset) -> {
+			if (!FirstPersonModel.bodyOffsetScalingEnabled.get())
+				return offset;
+
+			return offset.multiply(ScaleTypes.BASE.getScaleData(player).getScale());
+		}));
 
 		if (Keybinding.keybindsEnabled.lockAndGet() && Keybinding.debugKeybindsEnabled.lockAndGet()) {
 			RoleplayScreen roleplay = new RoleplayScreen();

@@ -3,6 +3,7 @@
     "package": "cdiv.nano.client.mixin",
     "compatibilityLevel": "JAVA_21",
     "client": [
+        "EntitySoundScalingMixin",
         "ExampleClientMixin"
     ],
     "injectors": {

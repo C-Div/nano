@@ -28,14 +28,16 @@ import java.util.Optional;
 public class NanoClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		SharedInteractions.initializeMiningPositionGetter(player -> {
-			ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
+		if (FabricLoader.getInstance().isModLoaded("firstperson")) {
+			SharedInteractions.initializeMiningPositionGetter(player -> {
+				ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
 
-			if (interactionManager == null)
-				return Optional.empty();
+				if (interactionManager == null)
+					return Optional.empty();
 
-			return ((WidenedClientPlayerInteractionManager) interactionManager).nano$getMiningPosition();
-		});
+				return ((WidenedClientPlayerInteractionManager) interactionManager).nano$getMiningPosition();
+			});
+		}
 
 		FabricLoader
 			.getInstance()

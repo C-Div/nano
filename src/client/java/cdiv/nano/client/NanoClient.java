@@ -1,6 +1,8 @@
 package cdiv.nano.client;
 
 import cdiv.nano.Components;
+import cdiv.nano.SharedInteractions;
+import cdiv.nano.client.access.WidenedClientPlayerInteractionManager;
 import cdiv.nano.client.api.config.FirstPersonModel;
 import cdiv.nano.client.api.config.Keybinding;
 import cdiv.nano.client.api.NanoClientIntegration;
@@ -12,17 +14,29 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.util.math.Vec3d;
 import org.lwjgl.glfw.GLFW;
 import virtuoel.pehkui.api.ScaleTypes;
+
+import java.util.Optional;
 
 public class NanoClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		SharedInteractions.initializeMiningPositionGetter(player -> {
+			ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
+
+			if (interactionManager == null)
+				return Optional.empty();
+
+			return ((WidenedClientPlayerInteractionManager) interactionManager).nano$getMiningPosition();
+		});
+
 		FabricLoader
 			.getInstance()
 			.getEntrypoints("nano-client", NanoClientIntegration.class)

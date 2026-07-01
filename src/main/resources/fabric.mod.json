@@ -18,6 +18,9 @@
 		"main": [
 			"cdiv.nano.Nano"
 		],
+		"server": [
+			"cdiv.nano.server.NanoServer"
+		],
 		"client": [
 			"cdiv.nano.client.NanoClient"
 		],

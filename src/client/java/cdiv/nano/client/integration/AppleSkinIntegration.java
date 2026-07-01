@@ -2,6 +2,7 @@ package cdiv.nano.client.integration;
 
 import cdiv.nano.Components;
 import cdiv.nano.api.config.Food;
+import cdiv.nano.util.helper.ItemHelper;
 import cdiv.nano.registry.Registries;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.Item;
@@ -21,7 +22,7 @@ public class AppleSkinIntegration implements AppleSkinApi {
             Item item = itemStack.getItem();
             Double itemScale = itemStack.get(Components.ITEM_SCALE);
 
-            if (itemScale == null || (cdiv.nano.helper.Item.isModdedItem(item) && !Registries.FoodScaling.has(item)))
+            if (itemScale == null || (ItemHelper.isModdedItem(item) && !Registries.FoodScaling.has(item)))
                 return;
 
             final FoodComponent defaultFoodComponent = foodValues.defaultFoodComponent;

@@ -1,6 +1,6 @@
 package cdiv.nano.mixin.pathfinding;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.ai.FuzzyPositions;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +17,7 @@ public class FuzzyPositionsTowardScalingMixin {
         cancellable = true
     )
     private static void nano$towardTarget$minimumScaling(PathAwareEntity entity, int horizontalRange, Random random, BlockPos fuzz, CallbackInfoReturnable<BlockPos> callbackInfoReturnable) {
-        BlockPos blockPos = Mixin.getPathfindingTowardTarget(entity, horizontalRange, random, fuzz);
+        BlockPos blockPos = MixinHelper.getPathfindingTowardTarget(entity, horizontalRange, random, fuzz);
 
         if (blockPos == null)
             return;

@@ -1,6 +1,6 @@
 package cdiv.nano.mixin.pathfinding.animal;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.passive.AnimalEntity;
 import org.spongepowered.asm.mixin.Final;
@@ -12,7 +12,7 @@ import virtuoel.pehkui.api.ScaleData;
 
 import java.util.function.DoubleUnaryOperator;
 
-import static cdiv.nano.helper.Mixin.getPathfindingDoubleConstant;
+import static cdiv.nano.util.helper.MixinHelper.getPathfindingDoubleConstant;
 
 @org.spongepowered.asm.mixin.Mixin(FollowParentGoal.class)
 public class FollowParentGoalScalingMixin {
@@ -20,18 +20,18 @@ public class FollowParentGoalScalingMixin {
     @Final
     private AnimalEntity animal;
 
-    @Unique Mixin.FloatReference nano$previousScale = new Mixin.FloatReference();
-    @Unique Mixin.Reference<ScaleData> nano$cachedScaleData = new Mixin.Reference<>();
+    @Unique MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
+    @Unique MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
 
-    @Unique Mixin.DoubleReference nano$cachedExpandHorizontalValue = new Mixin.DoubleReference();
-    @Unique Mixin.DoubleReference nano$cachedExpandVerticalValue = new Mixin.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedExpandHorizontalValue = new MixinHelper.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedExpandVerticalValue = new MixinHelper.DoubleReference();
 
-    @Unique Mixin.DoubleReference nano$cachedMinimumContinueDistance = new Mixin.DoubleReference();
-    @Unique Mixin.DoubleReference nano$cachedMaximumContinueDistance = new Mixin.DoubleReference();
-    @Unique Mixin.DoubleReference nano$cachedSquaredDistance = new Mixin.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedMinimumContinueDistance = new MixinHelper.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedMaximumContinueDistance = new MixinHelper.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedSquaredDistance = new MixinHelper.DoubleReference();
 
     @Unique
-    public double nano$getConstant(double constant, Mixin.DoubleReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {
+    public double nano$getConstant(double constant, MixinHelper.DoubleReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {
         return getPathfindingDoubleConstant(animal, constant, nano$cachedScaleData, nano$previousScale, cachedCalculatedValue, scalingFunction);
     }
 

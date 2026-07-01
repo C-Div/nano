@@ -1,4 +1,4 @@
-package cdiv.nano.helper;
+package cdiv.nano.util.helper;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.AttributeModifiersComponent;
@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.OptionalDouble;
 import java.util.function.DoubleSupplier;
 
-public class Item {
+public class ItemHelper {
     public static double resolveScale(ItemStack stack, final double scale) {
         net.minecraft.item.Item item = stack.getItem();
 
@@ -32,7 +32,7 @@ public class Item {
             : supplier.getAsDouble();
     }
 
-    public static OptionalDouble getFinalAttributeValue(@Nullable ItemStack stack, RegistryEntry<EntityAttribute> attribute) {
+    public static OptionalDouble getAttributeValue(@Nullable ItemStack stack, RegistryEntry<EntityAttribute> attribute) {
         if (stack == null)
             return OptionalDouble.empty();
 
@@ -54,11 +54,11 @@ public class Item {
     }
 
     /**
-     * @deprecated Use generic {@link #getFinalAttributeValue(ItemStack, RegistryEntry)} instead
+     * @deprecated Use generic {@link #getAttributeValue(ItemStack, RegistryEntry)} instead
      */
     @Deprecated
     public static OptionalDouble getAttackDamage(ItemStack stack) {
-        return getFinalAttributeValue(stack, EntityAttributes.GENERIC_ATTACK_DAMAGE);
+        return getAttributeValue(stack, EntityAttributes.GENERIC_ATTACK_DAMAGE);
     }
 
     public static boolean isVanillaItem(net.minecraft.item.Item item) {

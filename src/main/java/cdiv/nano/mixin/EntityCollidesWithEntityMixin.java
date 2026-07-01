@@ -2,7 +2,7 @@ package cdiv.nano.mixin;
 
 import cdiv.nano.DamageSources;
 import cdiv.nano.Nano;
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import cdiv.nano.api.config.Stepping;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
@@ -21,13 +21,13 @@ public class EntityCollidesWithEntityMixin {
 		if (!Stepping.damageEnabled.get())
 			return;
 
-		LivingEntity entity = Mixin.asLivingEntity(this);
+		LivingEntity entity = MixinHelper.asLivingEntity(this);
 
 		if (entity.getWorld().isClient
 			|| entity.isDead()
 			|| other == entity // Yes this is a real thing that we have to check
 			|| Stepping.immuneEntities.contains(other.getType())
-			|| !Mixin.isEntityMoving(entity))
+			|| !MixinHelper.isEntityMoving(entity))
 			return;
 
 		if (other instanceof LivingEntity otherAsLiving && (!otherAsLiving.canTakeDamage() || otherAsLiving.isDead()))

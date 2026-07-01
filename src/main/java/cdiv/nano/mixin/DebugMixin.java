@@ -1,6 +1,6 @@
 package cdiv.nano.mixin;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -17,7 +17,7 @@ public class DebugMixin {
         method = "tick"
     )
     public void tick(CallbackInfo callbackInfo) {
-        Entity entity = Mixin.asEntity(this);
+        Entity entity = MixinHelper.asEntity(this);
 
         if (entity.distanceTraveled == nano$debug1)
             return;

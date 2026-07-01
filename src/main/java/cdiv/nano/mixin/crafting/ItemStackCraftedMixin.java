@@ -1,8 +1,8 @@
 package cdiv.nano.mixin.crafting;
 
 import cdiv.nano.Components;
-import cdiv.nano.helper.Item;
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.ItemHelper;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -18,12 +18,12 @@ public class ItemStackCraftedMixin {
         method = "onCraftByPlayer(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;I)V"
     )
     public void nano$onCraftByPlayer$resultScaler(World world, PlayerEntity player, int amount, CallbackInfo callbackInfo) {
-        ItemStack itemStack = Mixin.asItemStack(this);
+        ItemStack itemStack = MixinHelper.asItemStack(this);
 
         if (itemStack.contains(Components.ITEM_SCALE))
             return;
 
-        double crafterScale = Item.resolveScale(itemStack, () -> ScaleTypes.BASE.getScaleData(player).getTargetScale());
+        double crafterScale = ItemHelper.resolveScale(itemStack, () -> ScaleTypes.BASE.getScaleData(player).getTargetScale());
         itemStack.set(Components.ITEM_SCALE, crafterScale);
     }
 }

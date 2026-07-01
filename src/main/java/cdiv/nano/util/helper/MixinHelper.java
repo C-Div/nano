@@ -1,4 +1,4 @@
-package cdiv.nano.helper;
+package cdiv.nano.util.helper;
 
 import cdiv.nano.access.MovingPlayer;
 import cdiv.nano.api.config.Pathfinding;
@@ -19,7 +19,7 @@ import virtuoel.pehkui.api.ScaleTypes;
 
 import java.util.function.DoubleUnaryOperator;
 
-public class Mixin {
+public class MixinHelper {
     public static final float EPSILON = 0.001F;
 
     public static Entity asEntity(Object object) {
@@ -63,20 +63,20 @@ public class Mixin {
     @SuppressWarnings("unused")
     public static boolean isPathfindingScalingAllowed(Entity entity) {
         return Pathfinding.pathfindingScalingEnabled.get()
-            && (!cdiv.nano.helper.Entity.isModdedEntity(entity)
+            && (!EntityHelper.isModdedEntity(entity)
             || cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
     public static boolean isPathfindingScalingDisallowed(Entity entity) {
         return !Pathfinding.pathfindingScalingEnabled.get()
-            || (cdiv.nano.helper.Entity.isModdedEntity(entity)
+            || (EntityHelper.isModdedEntity(entity)
             && !cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
     public static boolean isPathfindingMinimumScalingDisallowed(Entity entity) {
         return !Pathfinding.pathfindingScalingEnabled.get()
             || !Pathfinding.pathfindingMinimumScalingEnabled.get()
-            || (cdiv.nano.helper.Entity.isModdedEntity(entity)
+            || (EntityHelper.isModdedEntity(entity)
             && !cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
@@ -182,7 +182,7 @@ public class Mixin {
         DoubleReference cachedCalculatedValue,
         DoubleUnaryOperator scalingFunction
     ) { // This method does direct field access for speed
-        if (Mixin.isPathfindingScalingDisallowed(entity))
+        if (MixinHelper.isPathfindingScalingDisallowed(entity))
             return constant;
 
         ScaleData scaleData = cachedScaleData.value;
@@ -215,7 +215,7 @@ public class Mixin {
         IntReference cachedCalculatedValue,
         DoubleUnaryOperator scalingFunction
     ) {
-        if (Mixin.isPathfindingScalingDisallowed(entity))
+        if (MixinHelper.isPathfindingScalingDisallowed(entity))
             return constant;
 
         ScaleData scaleData = cachedScaleData.value;

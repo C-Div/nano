@@ -1,7 +1,7 @@
 package cdiv.nano.client.mixin;
 
 import cdiv.nano.api.config.Sound;
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.injection.At;
@@ -23,7 +23,7 @@ public class EntitySoundScalingMixin {
 		if (!Sound.soundScalingEnabled.get())
 			return volume;
 
-		Entity entity = Mixin.asEntity(this);
+		Entity entity = MixinHelper.asEntity(this);
 		ScaleData scaleData = ScaleTypes.BASE.getScaleData(entity);
 
 		if (scaleData.isReset())

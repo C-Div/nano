@@ -1,6 +1,6 @@
 package cdiv.nano.mixin.pathfinding;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.Constant;
@@ -9,19 +9,19 @@ import virtuoel.pehkui.api.ScaleData;
 
 import java.util.function.DoubleUnaryOperator;
 
-import static cdiv.nano.helper.Mixin.getPathfindingIntConstant;
+import static cdiv.nano.util.helper.MixinHelper.getPathfindingIntConstant;
 
 @org.spongepowered.asm.mixin.Mixin(WanderAroundFarGoal.class)
 public class WanderAroundFarGoalScalingMixin {
-    @Unique Mixin.FloatReference nano$previousScale = new Mixin.FloatReference();
-    @Unique Mixin.Reference<ScaleData> nano$cachedScaleData = new Mixin.Reference<>();
+    @Unique MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
+    @Unique MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
 
-    @Unique Mixin.IntReference nano$cachedWaterHorizontalRange = new Mixin.IntReference();
-    @Unique Mixin.IntReference nano$cachedHorizontalRange = new Mixin.IntReference();
-    @Unique Mixin.IntReference nano$cachedVerticalRange = new Mixin.IntReference();
+    @Unique MixinHelper.IntReference nano$cachedWaterHorizontalRange = new MixinHelper.IntReference();
+    @Unique MixinHelper.IntReference nano$cachedHorizontalRange = new MixinHelper.IntReference();
+    @Unique MixinHelper.IntReference nano$cachedVerticalRange = new MixinHelper.IntReference();
 
     @Unique
-    public int nano$getConstant(int constant, Mixin.IntReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {
+    public int nano$getConstant(int constant, MixinHelper.IntReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {
         return getPathfindingIntConstant(((WanderAroundFarGoal) (Object) this).mob, constant, nano$cachedScaleData, nano$previousScale, cachedCalculatedValue, scalingFunction);
     }
 

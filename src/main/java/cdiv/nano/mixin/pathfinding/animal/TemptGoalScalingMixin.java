@@ -1,9 +1,8 @@
 package cdiv.nano.mixin.pathfinding.animal;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -13,7 +12,7 @@ import virtuoel.pehkui.api.ScaleData;
 
 import java.util.function.DoubleUnaryOperator;
 
-import static cdiv.nano.helper.Mixin.getPathfindingDoubleConstant;
+import static cdiv.nano.util.helper.MixinHelper.getPathfindingDoubleConstant;
 
 @org.spongepowered.asm.mixin.Mixin(TemptGoal.class)
 public class TemptGoalScalingMixin {
@@ -21,17 +20,14 @@ public class TemptGoalScalingMixin {
     @Final
     protected PathAwareEntity mob;
 
-    @Shadow
-    protected PlayerEntity closestPlayer;
+    @Unique MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
+    @Unique MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
 
-    @Unique Mixin.FloatReference nano$previousScale = new Mixin.FloatReference();
-    @Unique Mixin.Reference<ScaleData> nano$cachedScaleData = new Mixin.Reference<>();
-
-    @Unique Mixin.DoubleReference nano$cachedSquaredNavigationDistance = new Mixin.DoubleReference();
-    @Unique Mixin.DoubleReference nano$cachedSquaredPlayerDistance = new Mixin.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedSquaredNavigationDistance = new MixinHelper.DoubleReference();
+    @Unique MixinHelper.DoubleReference nano$cachedSquaredPlayerDistance = new MixinHelper.DoubleReference();
 
     @Unique
-    public double nano$getConstant(double constant, Mixin.DoubleReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {
+    public double nano$getConstant(double constant, MixinHelper.DoubleReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {
         return getPathfindingDoubleConstant(mob, constant, nano$cachedScaleData, nano$previousScale, cachedCalculatedValue, scalingFunction);
     }
 

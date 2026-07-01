@@ -1,6 +1,6 @@
 package cdiv.nano.mixin;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import cdiv.nano.api.config.Xp;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -29,7 +29,7 @@ public class EntityDropXpMixin {
         if (!Xp.xpScalingEnabled.get())
             return;
 
-        LivingEntity entity = Mixin.asLivingEntity(this);
+        LivingEntity entity = MixinHelper.asLivingEntity(this);
         ScaleData scaleData = ScaleTypes.BASE.getScaleData(entity);
 
         if (scaleData.isReset())

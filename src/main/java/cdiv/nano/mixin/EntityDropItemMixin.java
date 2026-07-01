@@ -1,8 +1,8 @@
 package cdiv.nano.mixin;
 
 import cdiv.nano.Components;
-import cdiv.nano.helper.Item;
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.ItemHelper;
+import cdiv.nano.util.helper.MixinHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -27,7 +27,7 @@ public class EntityDropItemMixin {
         Double itemScale = stack.get(Components.ITEM_SCALE);
 
         if (itemScale == null) {
-            itemScale = Item.resolveScale(stack, () -> (double) ScaleTypes.BASE.getScaleData(Mixin.asEntity(this)).getTargetScale());
+            itemScale = ItemHelper.resolveScale(stack, () -> (double) ScaleTypes.BASE.getScaleData(MixinHelper.asEntity(this)).getTargetScale());
             stack.set(Components.ITEM_SCALE, itemScale);
         }
 

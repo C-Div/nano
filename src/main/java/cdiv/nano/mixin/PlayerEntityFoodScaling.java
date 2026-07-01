@@ -3,7 +3,8 @@ package cdiv.nano.mixin;
 import cdiv.nano.Components;
 import cdiv.nano.DamageSources;
 import cdiv.nano.api.config.Food;
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.ItemHelper;
+import cdiv.nano.util.helper.MixinHelper;
 import cdiv.nano.registry.Registries;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.Entity;
@@ -41,10 +42,10 @@ public abstract class PlayerEntityFoodScaling {
 
         Item item = stack.getItem();
 
-        if (cdiv.nano.helper.Item.isModdedItem(item) && !Registries.FoodScaling.has(item))
+        if (ItemHelper.isModdedItem(item) && !Registries.FoodScaling.has(item))
             return;
 
-        Entity entity = Mixin.asEntity(this);
+        Entity entity = MixinHelper.asEntity(this);
         Double itemScale = stack.get(Components.ITEM_SCALE);
         final ScaleData scaleData = ScaleTypes.BASE.getScaleData(entity);
 

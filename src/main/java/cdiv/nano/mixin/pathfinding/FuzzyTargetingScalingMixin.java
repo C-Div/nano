@@ -1,6 +1,6 @@
 package cdiv.nano.mixin.pathfinding;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.ai.FuzzyTargeting;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -18,6 +18,6 @@ public class FuzzyTargetingScalingMixin {
         )
     )
     private static BlockPos nano$find_localFuzz$minimumScaling(BlockPos original, PathAwareEntity entity, int horizontalRange, int verticalRange) {
-        return Mixin.getPathfindingLocalFuzz(original, entity, horizontalRange, verticalRange);
+        return MixinHelper.getPathfindingLocalFuzz(original, entity, horizontalRange, verticalRange);
     }
 }

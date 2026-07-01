@@ -1,6 +1,6 @@
 package cdiv.nano.mixin.pathfinding;
 
-import cdiv.nano.helper.Mixin;
+import cdiv.nano.util.helper.MixinHelper;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.mob.PathAwareEntity;
@@ -20,7 +20,7 @@ public class NoPenaltyTargetingScalingMixin { // Note - Switch this to more spec
         argsOnly = true
     )
     private static int nano$find$horizontalRangeScaling(int horizontalRange, PathAwareEntity entity) {
-        if (Mixin.isPathfindingScalingDisallowed(entity))
+        if (MixinHelper.isPathfindingScalingDisallowed(entity))
             return horizontalRange;
 
         ScaleData scaleData = ScaleTypes.BASE.getScaleData(entity);
@@ -39,7 +39,7 @@ public class NoPenaltyTargetingScalingMixin { // Note - Switch this to more spec
         argsOnly = true
     )
     private static int nano$find$verticalRangeScaling(int verticalRange, PathAwareEntity entity) {
-        if (Mixin.isPathfindingScalingDisallowed(entity))
+        if (MixinHelper.isPathfindingScalingDisallowed(entity))
             return verticalRange;
 
         ScaleData scaleData = ScaleTypes.BASE.getScaleData(entity);
@@ -58,6 +58,6 @@ public class NoPenaltyTargetingScalingMixin { // Note - Switch this to more spec
         )
     )
     private static BlockPos nano$find_localFuzz$minimumScaling(BlockPos original, PathAwareEntity entity, int horizontalRange, int verticalRange) {
-        return Mixin.getPathfindingLocalFuzz(original, entity, horizontalRange, verticalRange);
+        return MixinHelper.getPathfindingLocalFuzz(original, entity, horizontalRange, verticalRange);
     }
 }

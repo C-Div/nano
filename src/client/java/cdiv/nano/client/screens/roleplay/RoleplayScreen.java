@@ -1,19 +1,16 @@
 package cdiv.nano.client.screens.roleplay;
 
-import cdiv.nano.client.helper.screen.*;
-import cdiv.nano.client.helper.screen.widget.BackgroundWidget;
-import cdiv.nano.client.helper.screen.widget.util.ButtonWidgetBuilder;
+import cdiv.nano.client.util.screen.BoundDimensions;
+import cdiv.nano.client.util.screen.CachingDimensions;
+import cdiv.nano.client.util.screen.Screen;
+import cdiv.nano.client.util.screen.SimpleDimensions;
+import cdiv.nano.client.util.screen.widget.BackgroundWidget;
+import cdiv.nano.client.util.screen.widget.util.ButtonWidgetBuilder;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.client.toast.SystemToast;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.function.Function;
 
 public class RoleplayScreen extends Screen {
     public final BoundDimensions<CachingDimensions<SimpleDimensions<?>>> BACKGROUND_DIMENSIONS;
@@ -45,6 +42,7 @@ public class RoleplayScreen extends Screen {
 
     @Override
     protected void addDrawables(@NotNull MinecraftClient client) {
+        //noinspection deprecation
         ButtonWidget buttonWidget = new ButtonWidgetBuilder(
             Text.translatable("screen.roleplay.button.spurt.text"),
             b -> new SpurtScreen().open()

@@ -1,16 +1,18 @@
 package cdiv.nano;
 
-import cdiv.nano.helper.Item;
+import cdiv.nano.util.helper.EntityHelper;
+import cdiv.nano.util.helper.ItemHelper;
 import cdiv.nano.scale.modifiers.FilteredScaleModifier;
 import cdiv.nano.scale.modifiers.NanoScaleModifier;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ToolComponent;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import virtuoel.pehkui.api.*;
 
 import java.util.Map;
@@ -33,7 +35,7 @@ public class ScaleModifiers {
                     Double existingItemScale = itemStack.get(Components.ITEM_SCALE);
 
                     if (existingItemScale == null) {
-                        existingItemScale = Item.resolveScale(itemStack, () -> (double) entityScaleData.getTargetScale());
+                        existingItemScale = ItemHelper.resolveScale(itemStack, () -> (double) entityScaleData.getTargetScale());
                         itemStack.set(Components.ITEM_SCALE, existingItemScale);
                     }
 
@@ -51,15 +53,21 @@ public class ScaleModifiers {
             new FilteredScaleModifier<>(
                 Set.of(ScaleTypes.ATTACK),
                 Set.of(LivingEntity.class),
-                (ScaleData scaleData, LivingEntity entity, float modifiedScale, float delta) -> {
+                (ScaleData scaleData, LivingEntity entity, float modifiedScale, float delta) -> { // FUTURE: Extract this to a generic method
+                    float baseDamage = (float) entity.getAttributeBaseValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+                    float extraDamage = (float) ItemHelper.getAttributeValue(EntityHelper.getHeldItemStack(entity), EntityAttributes.GENERIC_ATTACK_DAMAGE)
+                        .orElse(0.0D);
+
+                    float totalDamage = baseDamage + extraDamage;
+
+                    if (totalDamage == 0.0F) // Prevent division by 0
+                        return modifiedScale;
+
                     float scale = ScaleTypes.BASE.getScaleData(entity).getScale(delta);
-                    double result = modifiedScale * scale;
-                    OptionalDouble damage = Item.getFinalAttributeValue(cdiv.nano.helper.Entity.getHeldItemStack(entity), EntityAttributes.GENERIC_ATTACK_DAMAGE);
+                    float itemScale = ScaleTypes.HELD_ITEM.getScaleData(entity).getScale(delta);
+                    float totalScaledDamage = baseDamage * scale + extraDamage * itemScale;
 
-                    if (damage.isEmpty() || damage.getAsDouble() == 0.0)
-                        return (float) result;
-
-                    return (float) (result * ScaleTypes.HELD_ITEM.getScaleData(entity).getScale(delta));
+                    return modifiedScale + (totalScaledDamage / totalDamage - 1.0F); // Subtract one since we're adding instead of multiplying
                 }
             ),
             Map.entry(cdiv.nano.api.config.ScaleModifiers.attackDamageScaleModifierEnabled, true)
@@ -73,34 +81,54 @@ public class ScaleModifiers {
                 Set.of(ScaleTypes.ATTACK_SPEED),
                 Set.of(LivingEntity.class),
                 (ScaleData scaleData, LivingEntity entity, float modifiedScale, float delta) -> {
-                    OptionalDouble speed = Item.getFinalAttributeValue(cdiv.nano.helper.Entity.getHeldItemStack(entity), EntityAttributes.GENERIC_ATTACK_SPEED);
+                    OptionalDouble speed = ItemHelper.getAttributeValue(EntityHelper.getHeldItemStack(entity), EntityAttributes.GENERIC_ATTACK_SPEED);
 
                     if (speed.isEmpty() || speed.getAsDouble() == 0.0)
                         return modifiedScale;
 
-                    return modifiedScale / ScaleTypes.HELD_ITEM.getScaleData(entity).getScale(delta);
+                    return modifiedScale + (1.0F / ScaleTypes.HELD_ITEM.getScaleData(entity).getScale(delta) - 1.0F);
                 }
             ),
             Map.entry(cdiv.nano.api.config.ScaleModifiers.attackSpeedScaleModifierEnabled, true)
         )
     );
 
+    @SuppressWarnings("CommentedOutCode")
     public static final ScaleModifier MINING_SPEED_MULTIPLIER = register(
         "mining_speed_multiplier",
         new NanoScaleModifier<>(
             new FilteredScaleModifier<>(
                 Set.of(ScaleTypes.MINING_SPEED),
-                Set.of(LivingEntity.class),
-                (ScaleData scaleData, LivingEntity entity, float modifiedScale, float delta) -> {
+                Set.of(PlayerEntity.class),
+                (ScaleData scaleData, PlayerEntity entity, float modifiedScale, float delta) -> { // Why the fuck is tool mining speed so complicated
+                    ItemStack itemStack = EntityHelper.getHeldItemStack(entity);
+
+                    if (itemStack == null)
+                        return modifiedScale;
+
                     float scale = ScaleTypes.BASE.getScaleData(entity).getScale(delta);
-                    double result = modifiedScale * scale;
+                    float baseBlockBreakSpeed = (float) entity.getAttributeBaseValue(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+                    float scaledBlockBreakSpeed = baseBlockBreakSpeed * scale;
 
-                    ItemStack itemStack = cdiv.nano.helper.Entity.getHeldItemStack(entity);
+                    ToolComponent toolComponent = itemStack.get(DataComponentTypes.TOOL);
+                    BlockPos miningPosition = SharedInteractions.getMiningPosition(entity).orElse(null);
+//                    Nano.LOGGER.info("Block Break Speed: {}, Scaled Block Break Speed: {}", baseBlockBreakSpeed, scaledBlockBreakSpeed);
 
-                    if (itemStack == null || itemStack.get(DataComponentTypes.TOOL) == null)
-                        return (float) result;
+                    if (toolComponent == null) {
+//                        Nano.LOGGER.info("Added: {}, Total: {}", scaledBlockBreakSpeed / baseBlockBreakSpeed - 1, modifiedScale + scaledBlockBreakSpeed / baseBlockBreakSpeed - 1);
+                        return modifiedScale + scaledBlockBreakSpeed / baseBlockBreakSpeed - 1;
+                    }
 
-                    return (float) (result * ScaleTypes.HELD_ITEM.getScaleData(entity).getScale(delta));
+                    float itemScale = ScaleTypes.HELD_ITEM.getScaleData(entity).getScale(delta);
+                    float baseItemBreakSpeed = (miningPosition == null) ? toolComponent.defaultMiningSpeed() : toolComponent.getSpeed(entity.getWorld().getBlockState(miningPosition));
+                    float scaledItemBreakSpeed = baseItemBreakSpeed * itemScale;
+
+                    float totalMiningSpeed = baseItemBreakSpeed * baseBlockBreakSpeed;
+                    float totalScaledMiningSpeed = scaledItemBreakSpeed * scaledBlockBreakSpeed;
+//                    Nano.LOGGER.info("Item Break Speed: {}, Scaled Item Break Speed: {}",  baseItemBreakSpeed, scaledItemBreakSpeed);
+//                    Nano.LOGGER.info("Added: {}, Total: {}", totalScaledMiningSpeed / totalMiningSpeed - 1, modifiedScale + totalScaledMiningSpeed / totalMiningSpeed - 1);
+
+                    return modifiedScale + totalScaledMiningSpeed / totalMiningSpeed - 1;
                 }
             ),
             Map.entry(cdiv.nano.api.config.ScaleModifiers.miningSpeedScaleModifierEnabled, true)

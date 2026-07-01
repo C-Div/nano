@@ -1,4 +1,4 @@
-package cdiv.nano.client.helper.screen;
+package cdiv.nano.client.util.screen;
 
 import net.minecraft.client.gui.screen.Screen;
 import org.jetbrains.annotations.NotNull;

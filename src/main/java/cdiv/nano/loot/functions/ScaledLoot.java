@@ -4,7 +4,7 @@ import cdiv.nano.Components;
 import cdiv.nano.LootFunctions;
 import cdiv.nano.api.config.Loot;
 import cdiv.nano.api.event.LootEvents;
-import cdiv.nano.helper.Item;
+import cdiv.nano.util.helper.ItemHelper;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.entity.Entity;
@@ -55,7 +55,7 @@ public class ScaledLoot extends ConditionalLootFunction {
             return stack;
 
         final double finalScale = currentScale * multiplier;
-        stack.set(Components.ITEM_SCALE, Item.resolveScale(stack, finalScale));
+        stack.set(Components.ITEM_SCALE, ItemHelper.resolveScale(stack, finalScale));
 
         if (stack.getMaxCount() == 1)
             return stack;

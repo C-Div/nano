@@ -1,15 +1,10 @@
-package cdiv.nano.client.helper.screen;
+package cdiv.nano.client.util.screen;
 
 import cdiv.nano.Nano;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Drawable;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.Selectable;
 import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.function.Function;
 
 public class Screen extends net.minecraft.client.gui.screen.Screen {
     @Nullable
@@ -56,6 +51,7 @@ public class Screen extends net.minecraft.client.gui.screen.Screen {
     }
 
     @Nullable
+    @SuppressWarnings("unused")
     public net.minecraft.client.gui.screen.Screen getParent() {
         return this.parent;
     }
@@ -88,6 +84,7 @@ public class Screen extends net.minecraft.client.gui.screen.Screen {
         minecraftClient.setScreen(newScreen);
     }
 
+    @SuppressWarnings("unused")
     public void forceClose() {
         close(null);
     }

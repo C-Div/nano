@@ -1,7 +1,7 @@
-package cdiv.nano.client.helper.screen.widget;
+package cdiv.nano.client.util.screen.widget;
 
-import cdiv.nano.client.helper.screen.BoundDimensions;
-import cdiv.nano.client.helper.screen.Dimensions;
+import cdiv.nano.client.util.screen.BoundDimensions;
+import cdiv.nano.client.util.screen.Dimensions;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;

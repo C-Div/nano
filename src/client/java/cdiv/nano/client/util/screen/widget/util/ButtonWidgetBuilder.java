@@ -1,7 +1,7 @@
-package cdiv.nano.client.helper.screen.widget.util;
+package cdiv.nano.client.util.screen.widget.util;
 
-import cdiv.nano.client.helper.screen.BoundDimensions;
-import cdiv.nano.client.helper.screen.Dimensions;
+import cdiv.nano.client.util.screen.BoundDimensions;
+import cdiv.nano.client.util.screen.Dimensions;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
  * @deprecated Not compatible with class builder format
  */
 @Deprecated
+@SuppressWarnings("DeprecatedIsStillUsed")
 public class ButtonWidgetBuilder extends ButtonWidget.Builder {
     public ButtonWidgetBuilder(Text message, ButtonWidget.PressAction onPress) {
         super(message, onPress);
@@ -22,10 +23,12 @@ public class ButtonWidgetBuilder extends ButtonWidget.Builder {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public <T extends BoundDimensions<?>> ButtonWidgetBuilder position(T dimensions) {
         return position(dimensions.getScreen(), dimensions);
     }
 
+    @SuppressWarnings("unused")
     public <T extends Dimensions> ButtonWidgetBuilder width(Screen screen, T dimensions) {
         super.width(dimensions.getWidth(screen));
         return this;

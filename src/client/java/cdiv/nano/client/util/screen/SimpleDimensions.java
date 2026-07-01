@@ -1,4 +1,4 @@
-package cdiv.nano.client.helper.screen;
+package cdiv.nano.client.util.screen;
 
 import net.minecraft.client.gui.screen.Screen;
 
@@ -16,6 +16,7 @@ public class SimpleDimensions<BuilderReturnType extends SimpleDimensions<Builder
     protected double anchorX = 0;
     protected double anchorY = 0;
 
+    @SuppressWarnings("unused")
     public SimpleDimensions(double scaleX, double scaleY, int offsetX, int offsetY, double scaleWidth, double scaleHeight, int offsetWidth, int offsetHeight, double anchorX, double anchorY) {
         this.scaleX = scaleX;
         this.scaleY = scaleY;

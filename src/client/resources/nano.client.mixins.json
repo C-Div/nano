@@ -4,7 +4,8 @@
     "compatibilityLevel": "JAVA_21",
     "client": [
         "EntitySoundScalingMixin",
-        "ExampleClientMixin"
+        "ExampleClientMixin",
+        "addition.ClientPlayerInteractionManagerMixin"
     ],
     "injectors": {
         "defaultRequire": 1

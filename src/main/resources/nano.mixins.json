@@ -11,6 +11,7 @@
         "EntitySoundScalingMixin",
         "PlayerEntityDropItemMixin",
         "PlayerEntityFoodScaling",
+        "addition.ServerPlayerInteractionManagerMixin",
         "addition.PlayerMovementMixin",
         "crafting.FurnaceSmeltResultMixin",
         "crafting.ItemStackCraftedMixin",

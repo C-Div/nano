@@ -54,7 +54,12 @@ public class ScaleModifiers {
                 Set.of(ScaleTypes.ATTACK),
                 Set.of(LivingEntity.class),
                 (ScaleData scaleData, LivingEntity entity, float modifiedScale, float delta) -> { // FUTURE: Extract this to a generic method
-                    float baseDamage = (float) entity.getAttributeBaseValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+                    OptionalDouble baseDamageOptional = EntityHelper.getAttributeBaseValue(entity, EntityAttributes.GENERIC_ATTACK_DAMAGE);
+
+                    if (baseDamageOptional.isEmpty())
+                        return modifiedScale;
+
+                    float baseDamage = (float) baseDamageOptional.getAsDouble();
                     float extraDamage = (float) ItemHelper.getAttributeValue(EntityHelper.getHeldItemStack(entity), EntityAttributes.GENERIC_ATTACK_DAMAGE)
                         .orElse(0.0D);
 
@@ -107,7 +112,12 @@ public class ScaleModifiers {
                         return modifiedScale;
 
                     float scale = ScaleTypes.BASE.getScaleData(entity).getScale(delta);
-                    float baseBlockBreakSpeed = (float) entity.getAttributeBaseValue(EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+                    OptionalDouble baseBlockBreakSpeedOptional = EntityHelper.getAttributeBaseValue(entity, EntityAttributes.PLAYER_BLOCK_BREAK_SPEED);
+
+                    if (baseBlockBreakSpeedOptional.isEmpty())
+                        return modifiedScale;
+
+                    float baseBlockBreakSpeed = (float) baseBlockBreakSpeedOptional.getAsDouble();
                     float scaledBlockBreakSpeed = baseBlockBreakSpeed * scale;
 
                     ToolComponent toolComponent = itemStack.get(DataComponentTypes.TOOL);

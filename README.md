@@ -90,7 +90,7 @@ dependencies {
 ```
 
 ### First Person Model
-At the moment there does not seem to be any official instructions in their repository.
+At the moment there does not seem to be any official instructions in their [repository](https://github.com/tr7zw/FirstPersonModel/).
 
 You can instead add it using Modrinth's Maven repository.
 Official instructions from Modrinth exist for each individual mod version, for reference Nano uses version [2.7.2 for Minecraft 1.21.1](https://modrinth.com/mod/first-person-model/version/fSfRdYJ6)

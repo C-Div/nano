@@ -1,6 +1,6 @@
 package cdiv.nano.client.mixin;
 
-import cdiv.nano.payload.IsMovingC2SPayload;
+import cdiv.nano.payload.IsPlayerMovingC2SPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.network.ClientPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,6 +26,6 @@ public abstract class PlayerMovementMixin {
             return;
 
         nano$previouslyMoving = isMoving;
-        ClientPlayNetworking.send(new IsMovingC2SPayload(isMoving));
+        ClientPlayNetworking.send(new IsPlayerMovingC2SPayload(isMoving));
     }
 }

@@ -21,7 +21,7 @@ package cdiv.nano;
 import cdiv.nano.access.MovingPlayer;
 import cdiv.nano.api.config.Loot;
 import cdiv.nano.loot.functions.ScaledLoot;
-import cdiv.nano.payload.IsMovingC2SPayload;
+import cdiv.nano.payload.IsPlayerMovingC2SPayload;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -63,10 +63,10 @@ public class Nano implements ModInitializer {
 		DamageSources.initialize();
 		Sounds.initialize();
 
-		PayloadTypeRegistry.playC2S().register(IsMovingC2SPayload.ID, IsMovingC2SPayload.CODEC);
+		PayloadTypeRegistry.playC2S().register(IsPlayerMovingC2SPayload.ID, IsPlayerMovingC2SPayload.CODEC);
 		CommandRegistrationCallback.EVENT.register(Commands::register);
 
-		ServerPlayNetworking.registerGlobalReceiver(IsMovingC2SPayload.ID, (payload, context) -> ((MovingPlayer) context.player()).nano$setMoving(payload.isMoving()));
+		ServerPlayNetworking.registerGlobalReceiver(IsPlayerMovingC2SPayload.ID, (payload, context) -> ((MovingPlayer) context.player()).nano$setMoving(payload.isMoving()));
 
 		if (Loot.lootScalingEnabled.get()) {
 			LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {

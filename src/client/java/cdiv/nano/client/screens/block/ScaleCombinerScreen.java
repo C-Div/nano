@@ -35,6 +35,12 @@ public class ScaleCombinerScreen extends HandledScreen<ScaleCombinerScreenHandle
     }
 
     @Override
+    protected void init() {
+        super.init();
+        this.titleX = (this.backgroundWidth - this.textRenderer.getWidth(this.title)) / 2;
+    }
+
+    @Override
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 

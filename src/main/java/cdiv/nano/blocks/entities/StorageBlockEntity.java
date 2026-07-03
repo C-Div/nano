@@ -31,11 +31,6 @@ public abstract class StorageBlockEntity extends BlockEntity implements NanoInve
         return Inventory.canPlayerUse(this, player);
     }
 
-    @Override
-    public void markDirty() {
-        super.markDirty();
-    }
-
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
         Inventories.writeNbt(nbt, inventory, registryLookup);

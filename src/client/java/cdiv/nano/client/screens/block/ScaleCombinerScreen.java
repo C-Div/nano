@@ -18,20 +18,8 @@ public class ScaleCombinerScreen extends HandledScreen<ScaleCombinerScreenHandle
     private static final int COMBINE_PROGRESS_WIDTH = 24;
     private static final int COMBINE_PROGRESS_HEIGHT = 16;
 
-    public final BoundDimensions<CachingDimensions<SimpleDimensions<?>>> BACKGROUND_DIMENSIONS;
-
     public ScaleCombinerScreen(ScaleCombinerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-
-        BACKGROUND_DIMENSIONS = new BoundDimensions<>( // Aspect Ratio: 15344.0 / 25893.0
-            this,
-            new CachingDimensions<>(
-                new SimpleDimensions<>()
-                    .setPosition(0.5, 0.5)
-                    .setSize(0.2, 0.6)
-                    .setAnchor(0.5, 0.5)
-            )
-        );
     }
 
     @Override

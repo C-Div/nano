@@ -29,6 +29,9 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import virtuoel.pehkui.api.ScaleTypes;
@@ -40,6 +43,18 @@ import cdiv.nano.api.*;
 public class Nano implements ModInitializer {
 	public static final String MOD_ID = "nano";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	public static Identifier id(String path) {
+		return Identifier.of(MOD_ID, path);
+	}
+
+	public static MutableText translation(String key, String path) {
+		return Text.translatable(key + '.' + MOD_ID + '.' + path);
+	}
+
+	public static MutableText translation(String key, String path, Object... args) {
+		return Text.translatable(key + '.' + MOD_ID + '.' + path, args);
+	}
 
 	@Override
 	public void onInitialize() {

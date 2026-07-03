@@ -11,7 +11,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import virtuoel.pehkui.api.*;
 
@@ -166,7 +165,7 @@ public class ScaleModifiers {
     {
         return ScaleRegistries.register(
             ScaleRegistries.SCALE_MODIFIERS,
-            Identifier.of(Nano.MOD_ID, name),
+            Nano.id(name),
             scaleModifier
         );
     }

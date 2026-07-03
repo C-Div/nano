@@ -5,16 +5,11 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
-import java.security.cert.CertificateNotYetValidException;
-
-import static cdiv.nano.Nano.MOD_ID;
-
 public class DamageSources {
-    public static final RegistryKey<DamageType> STEPPING_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(MOD_ID, "stepping"));
-    public static final RegistryKey<DamageType> OVEREATING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(MOD_ID, "overeating"));
+    public static final RegistryKey<DamageType> STEPPING_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Nano.id("stepping"));
+    public static final RegistryKey<DamageType> OVEREATING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Nano.id("overeating"));
 
     public static DamageSource getSteppingDamage(World world) {
         return get(world, STEPPING_DAMAGE);

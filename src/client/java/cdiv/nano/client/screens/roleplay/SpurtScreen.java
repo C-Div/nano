@@ -8,11 +8,11 @@ import cdiv.nano.client.util.screen.Screen;
 import cdiv.nano.client.util.screen.SimpleDimensions;
 import cdiv.nano.client.util.screen.widget.BackgroundWidget;
 import cdiv.nano.client.util.screen.widget.util.ButtonWidgetBuilder;
+import cdiv.nano.util.helper.TranslationHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.CyclingButtonWidget;
-import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedList;
@@ -68,7 +68,7 @@ public class SpurtScreen extends Screen {
     protected void addDrawables(@NotNull MinecraftClient client) {
         //noinspection deprecation
         ButtonWidget saveButton = new ButtonWidgetBuilder(
-            Text.translatable("screen.roleplay.spurt.button.save.text"),
+            TranslationHelper.screen("roleplay.spurt.button.save.text"),
             button -> selectedSpurtModeUI.onSaveRequested(button)
         )
             .dimensions(SAVE_DIMENSIONS)
@@ -87,7 +87,7 @@ public class SpurtScreen extends Screen {
             .build(
                 SPURT_DIMENSIONS.getX(), SPURT_DIMENSIONS.getY(),
                 SPURT_DIMENSIONS.getWidth(), SPURT_DIMENSIONS.getHeight(),
-                Text.translatable("screen.roleplay.spurt.button.mode.prefix"),
+                TranslationHelper.screen("roleplay.spurt.button.mode.prefix"),
                 this::onModeCycle
             );
 

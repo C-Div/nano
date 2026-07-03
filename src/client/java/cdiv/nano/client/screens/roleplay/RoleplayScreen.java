@@ -6,6 +6,7 @@ import cdiv.nano.client.util.screen.Screen;
 import cdiv.nano.client.util.screen.SimpleDimensions;
 import cdiv.nano.client.util.screen.widget.BackgroundWidget;
 import cdiv.nano.client.util.screen.widget.util.ButtonWidgetBuilder;
+import cdiv.nano.util.helper.TranslationHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
@@ -44,7 +45,7 @@ public class RoleplayScreen extends Screen {
     protected void addDrawables(@NotNull MinecraftClient client) {
         //noinspection deprecation
         ButtonWidget buttonWidget = new ButtonWidgetBuilder(
-            Text.translatable("screen.roleplay.button.spurt.text"),
+            TranslationHelper.screen("roleplay.button.spurt.text"),
             b -> new SpurtScreen().open()
         )
             .dimensions(SPURT_DIMENSIONS)

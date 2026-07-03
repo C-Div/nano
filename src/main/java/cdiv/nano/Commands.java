@@ -1,5 +1,6 @@
 package cdiv.nano;
 
+import cdiv.nano.util.helper.TranslationHelper;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.fabricmc.loader.api.FabricLoader;
@@ -19,7 +20,7 @@ public class Commands {
         LiteralArgumentBuilder<ServerCommandSource> nanoCommand = CommandManager.literal("nano");
         nanoCommand.executes(context -> {
             context.getSource().sendFeedback(
-                () -> Text.translatable("commands.nano.nano.fail").formatted(Formatting.RED),
+                () -> TranslationHelper.command("nano.fail").formatted(Formatting.RED),
                 false
             );
 

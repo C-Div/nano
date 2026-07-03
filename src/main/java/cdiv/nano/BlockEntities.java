@@ -16,6 +16,7 @@ public class BlockEntities {
         Nano.LOGGER.info("Registering blocks entities...");
     }
 
+    @SuppressWarnings("SameParameterValue")
     private static <T extends BlockEntity>
     BlockEntityType<T> register(String name, BlockEntityType.BlockEntityFactory<? extends @NotNull T> entityFactory, Block... blocks) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Nano.id(name), BlockEntityType.Builder.<T>create(entityFactory, blocks).build());

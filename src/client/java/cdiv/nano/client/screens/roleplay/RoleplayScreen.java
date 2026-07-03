@@ -10,7 +10,6 @@ import cdiv.nano.util.helper.TranslationHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 public class RoleplayScreen extends Screen {

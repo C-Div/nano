@@ -11,6 +11,7 @@ public class DamageSources {
     public static final RegistryKey<DamageType> STEPPING_DAMAGE = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Nano.id("stepping"));
     public static final RegistryKey<DamageType> OVEREATING = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Nano.id("overeating"));
 
+    @SuppressWarnings("unused")
     public static DamageSource getSteppingDamage(World world) {
         return get(world, STEPPING_DAMAGE);
     }
@@ -23,6 +24,7 @@ public class DamageSources {
         return get(world, OVEREATING);
     }
 
+    @SuppressWarnings("unused")
     public static DamageSource getOvereatingDamage(World world, Entity attacker) {
         return get(world, OVEREATING, attacker);
     }

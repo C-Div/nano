@@ -16,6 +16,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class ScaleCombinerScreenHandler extends ScreenHandler {
     private final ScreenHandlerContext context;
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 

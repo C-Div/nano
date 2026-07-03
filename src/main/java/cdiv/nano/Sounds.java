@@ -8,8 +8,7 @@ import net.minecraft.util.Identifier;
 import java.util.List;
 import java.util.Random;
 
-import static cdiv.nano.Nano.MOD_ID;
-
+@SuppressWarnings("unused")
 public class Sounds {
     public static final SoundEvent STOMP_1 = register("stomp-1");
     public static final SoundEvent STOMP_2 = register("stomp-2");

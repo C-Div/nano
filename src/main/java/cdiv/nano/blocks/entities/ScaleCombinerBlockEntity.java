@@ -2,7 +2,6 @@ package cdiv.nano.blocks.entities;
 
 import cdiv.nano.BlockEntities;
 import cdiv.nano.Components;
-import cdiv.nano.Nano;
 import cdiv.nano.screen.ScaleCombinerScreenHandler;
 import cdiv.nano.util.helper.TranslationHelper;
 import cdiv.nano.util.transfer.SectionStorage;
@@ -74,6 +73,7 @@ public class ScaleCombinerBlockEntity extends StorageBlockEntity implements Side
     }
 
 
+    @SuppressWarnings("unused")
     public static void tick(World world, BlockPos pos, BlockState state, ScaleCombinerBlockEntity blockEntity) {
         ItemStack inputA = blockEntity.getStack(0);
         ItemStack inputB = blockEntity.getStack(1);

@@ -35,18 +35,19 @@ public interface NanoInventory extends Inventory {
         return true;
     }
 
-    private static boolean isOutBounds(DefaultedList<ItemStack> inventory, int size, int slot) {
+    private static boolean isOutBounds(int size, int slot) {
         return slot < 0 || slot >= size;
     }
 
-    private static boolean isInBounds(DefaultedList<ItemStack> inventory, int size, int slot) {
+    @SuppressWarnings("unused")
+    private static boolean isInBounds(int size, int slot) {
         return slot > -1 && slot < size;
     }
 
     default ItemStack getStack(int slot) {
         DefaultedList<ItemStack> inventory = getInventory();
 
-        if (isOutBounds(inventory, inventory.size(), slot))
+        if (isOutBounds(inventory.size(), slot))
             return ItemStack.EMPTY;
 
         return inventory.get(slot);
@@ -55,7 +56,7 @@ public interface NanoInventory extends Inventory {
     default ItemStack removeStack(int slot, int amount) {
         DefaultedList<ItemStack> inventory = getInventory();
 
-        if (isOutBounds(inventory, inventory.size(), slot))
+        if (isOutBounds(inventory.size(), slot))
             return ItemStack.EMPTY;
 
         ItemStack stack = inventory.get(slot);
@@ -71,7 +72,7 @@ public interface NanoInventory extends Inventory {
     default ItemStack removeStack(int slot) {
         DefaultedList<ItemStack> inventory = getInventory();
 
-        if (isOutBounds(inventory, inventory.size(), slot))
+        if (isOutBounds(inventory.size(), slot))
             return ItemStack.EMPTY;
 
         ItemStack stack = inventory.get(slot);
@@ -83,7 +84,7 @@ public interface NanoInventory extends Inventory {
     default void setStack(int slot, ItemStack stack) {
         DefaultedList<ItemStack> inventory = getInventory();
 
-        if (isOutBounds(inventory, inventory.size(), slot))
+        if (isOutBounds(inventory.size(), slot))
             return;
 
         inventory.set(slot, stack);
@@ -121,6 +122,7 @@ public interface NanoInventory extends Inventory {
         return false;
     }
 
+    @SuppressWarnings("unused")
     static boolean canPlayerUse(BlockEntity blockEntity, PlayerEntity player) {
         return canPlayerUse(blockEntity, player, 4.0F);
     }

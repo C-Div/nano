@@ -7,8 +7,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-
-import java.util.function.Function;
+import org.jetbrains.annotations.ApiStatus;
 
 public class Blocks {
     public static final Block SCALE_COMBINER = register(
@@ -20,6 +19,8 @@ public class Blocks {
         Nano.LOGGER.info("Registering blocks...");
     }
 
+    @SuppressWarnings("unused")
+    @ApiStatus.Obsolete(since = "0.0.1-alpha.17")
     private static Block registerWithItem(String name, Block block) {
         final BlockItem blockItem = new BlockItem(block, new Item.Settings());
         Registry.register(Registries.ITEM, Nano.id(name), blockItem);

@@ -73,6 +73,8 @@ public class Nano implements ModInitializer {
 		ScaleTypes.DROPS.getDefaultBaseValueModifiers().remove(virtuoel.pehkui.api.ScaleModifiers.BASE_MULTIPLIER);
 
 		Components.initialize();
+		Blocks.initialize();
+		BlockEntities.initialize();
 		Items.initialize();
 		LootFunctions.initialize();
 		DamageSources.initialize();

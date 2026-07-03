@@ -1,12 +1,15 @@
 package cdiv.nano.client;
 
 import cdiv.nano.Components;
+import cdiv.nano.ScreenHandlers;
 import cdiv.nano.SharedInteractions;
 import cdiv.nano.client.access.WidenedClientPlayerInteractionManager;
 import cdiv.nano.client.api.config.FirstPersonModel;
 import cdiv.nano.client.api.config.Keybinding;
 import cdiv.nano.client.api.NanoClientIntegration;
+import cdiv.nano.client.screens.block.ScaleCombinerScreen;
 import cdiv.nano.client.screens.roleplay.RoleplayScreen;
+import cdiv.nano.util.helper.TranslationHelper;
 import dev.tr7zw.firstperson.api.FirstPersonAPI;
 import dev.tr7zw.firstperson.api.PlayerOffsetHandler;
 import net.fabricmc.api.ClientModInitializer;
@@ -15,10 +18,10 @@ import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.network.ClientPlayerInteractionManager;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
 import virtuoel.pehkui.api.ScaleTypes;
@@ -39,6 +42,11 @@ public class NanoClient implements ClientModInitializer {
 			});
 		}
 
+		HandledScreens.register(
+			ScreenHandlers.SCALE_COMBINER,
+			ScaleCombinerScreen::new
+		);
+
 		FabricLoader
 			.getInstance()
 			.getEntrypoints("nano-client", NanoClientIntegration.class)
@@ -50,8 +58,8 @@ public class NanoClient implements ClientModInitializer {
 			if (scale == null)
 				return;
 
-			list.add(1, Text
-				.translatable("component.nano.item_scale.tooltip", scale)
+			list.add(1, TranslationHelper
+				.component("item_scale.tooltip", scale)
 				.formatted(Formatting.GRAY));
 		});
 

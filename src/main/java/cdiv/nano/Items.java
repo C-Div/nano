@@ -9,7 +9,7 @@ import net.minecraft.registry.Registry;
 import static cdiv.nano.Nano.LOGGER;
 
 public class Items {
-    public static final Item example = register("example", Item::new, new Item.Settings());
+    public static final BlockItem SCALE_COMBINER = registerBlock("scale_combiner", Blocks.SCALE_COMBINER);
 
     public static void initialize() {
         LOGGER.debug("Registering items...");

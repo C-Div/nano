@@ -76,6 +76,8 @@ public class Nano implements ModInitializer {
 		Blocks.initialize();
 		BlockEntities.initialize();
 		Items.initialize();
+		ItemGroups.initialize();
+		ScreenHandlers.initialize();
 		LootFunctions.initialize();
 		DamageSources.initialize();
 		Sounds.initialize();

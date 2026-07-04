@@ -1,4 +1,4 @@
-package cdiv.nano.util;
+package cdiv.nano.util.transfer;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;

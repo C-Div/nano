@@ -1,6 +1,6 @@
 package cdiv.nano.blocks.entities;
 
-import cdiv.nano.util.NanoInventory;
+import cdiv.nano.util.transfer.NanoInventory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;

@@ -1,9 +1,6 @@
 package cdiv.nano.client.screens.block;
 
 import cdiv.nano.Nano;
-import cdiv.nano.client.util.screen.BoundDimensions;
-import cdiv.nano.client.util.screen.CachingDimensions;
-import cdiv.nano.client.util.screen.SimpleDimensions;
 import cdiv.nano.screen.ScaleCombinerScreenHandler;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -32,7 +29,7 @@ public class ScaleCombinerScreen extends HandledScreen<ScaleCombinerScreenHandle
     protected void drawBackground(DrawContext context, float delta, int mouseX, int mouseY) {
         context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
-        int combineProgress = MathHelper.ceil(this.handler.getCombineProgress() * 24.0F);
+        int combineProgress = MathHelper.ceil(this.handler.getCombineProgress() * (float) COMBINE_PROGRESS_WIDTH);
 
         context.drawGuiTexture(
             COMBINE_PROGRESS_TEXTURE,

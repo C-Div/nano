@@ -12,7 +12,9 @@ import org.jetbrains.annotations.ApiStatus;
 public class Blocks {
     public static final Block SCALE_COMBINER = register(
         "scale_combiner",
-        new ScaleCombinerBlock(AbstractBlock.Settings.create())
+        new ScaleCombinerBlock(AbstractBlock.Settings.create()
+            .strength(4.0F)
+            .requiresTool())
     );
 
     public static void initialize() {

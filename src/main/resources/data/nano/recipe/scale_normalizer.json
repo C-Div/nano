@@ -32,6 +32,6 @@
   ],
   "group": "nano",
   "result": {
-    "id": "nano:scale_combiner"
+    "id": "nano:scale_normalizer"
   }
 }

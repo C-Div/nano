@@ -26,6 +26,7 @@ public class GrowthSound extends MovingSoundInstance {
         this.player = player;
         this.entity = entity;
 
+        this.volume = 0.75F;
         this.relative = false;
         this.attenuationType = AttenuationType.LINEAR;
         this.x = entity.getX();

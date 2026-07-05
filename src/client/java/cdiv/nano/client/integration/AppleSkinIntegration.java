@@ -2,6 +2,7 @@ package cdiv.nano.client.integration;
 
 import cdiv.nano.Components;
 import cdiv.nano.api.config.Food;
+import cdiv.nano.client.api.config.AppleSkin;
 import cdiv.nano.util.helper.ItemHelper;
 import cdiv.nano.registry.Registries;
 import net.minecraft.component.type.FoodComponent;
@@ -15,7 +16,7 @@ public class AppleSkinIntegration implements AppleSkinApi {
     @Override
     public void registerEvents() {
         FoodValuesEvent.EVENT.register(foodValues -> {
-            if (!cdiv.nano.client.api.config.Food.appleSkinIntegrationEnabled.get() || (!Food.foodNutritionScalingEnabled.get() && !Food.foodSaturationScalingEnabled.get()))
+            if (!AppleSkin.integrationEnabled.get() || (!Food.foodNutritionScalingEnabled.get() && !Food.foodSaturationScalingEnabled.get()))
                 return;
 
             ItemStack itemStack = foodValues.itemStack;

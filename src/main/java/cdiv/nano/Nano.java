@@ -87,13 +87,13 @@ public class Nano implements ModInitializer {
 
 		ServerPlayNetworking.registerGlobalReceiver(IsPlayerMovingC2SPayload.ID, (payload, context) -> ((MovingPlayer) context.player()).nano$setMoving(payload.isMoving()));
 
-		if (Loot.lootScalingEnabled.get()) {
-			LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-				if (!source.isBuiltin() || !key.getValue().getPath().startsWith("entities/"))
-					return;
+		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+			if (!source.isBuiltin()
+				|| !key.getValue().getPath().startsWith("entities/")
+				|| !Loot.lootScalingEnabled.get())
+				return;
 
-				tableBuilder.apply(() -> new ScaledLoot(List.of()));
-			});
-		}
+			tableBuilder.apply(() -> new ScaledLoot(List.of()));
+		});
 	}
 }

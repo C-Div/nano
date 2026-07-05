@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "nano:block/scale_normalizer" }
+    }
+}

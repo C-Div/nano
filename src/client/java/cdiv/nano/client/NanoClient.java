@@ -8,6 +8,7 @@ import cdiv.nano.client.api.config.FirstPersonModel;
 import cdiv.nano.client.api.config.Keybinding;
 import cdiv.nano.client.api.NanoClientIntegration;
 import cdiv.nano.client.screens.block.ScaleCombinerScreen;
+import cdiv.nano.client.screens.block.ScaleNormalizerScreen;
 import cdiv.nano.client.screens.roleplay.RoleplayScreen;
 import cdiv.nano.util.helper.TranslationHelper;
 import dev.tr7zw.firstperson.api.FirstPersonAPI;
@@ -45,6 +46,11 @@ public class NanoClient implements ClientModInitializer {
 		HandledScreens.register(
 			ScreenHandlers.SCALE_COMBINER,
 			ScaleCombinerScreen::new
+		);
+
+		HandledScreens.register(
+			ScreenHandlers.SCALE_NORMALIZER,
+			ScaleNormalizerScreen::new
 		);
 
 		FabricLoader

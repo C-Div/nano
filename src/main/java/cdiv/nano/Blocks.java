@@ -1,6 +1,7 @@
 package cdiv.nano;
 
 import cdiv.nano.blocks.ScaleCombinerBlock;
+import cdiv.nano.blocks.ScaleNormalizerBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -13,6 +14,13 @@ public class Blocks {
     public static final Block SCALE_COMBINER = register(
         "scale_combiner",
         new ScaleCombinerBlock(AbstractBlock.Settings.create()
+            .strength(4.0F)
+            .requiresTool())
+    );
+
+    public static final Block SCALE_NORMALIZER = register(
+        "scale_normalizer",
+        new ScaleNormalizerBlock(AbstractBlock.Settings.create()
             .strength(4.0F)
             .requiresTool())
     );

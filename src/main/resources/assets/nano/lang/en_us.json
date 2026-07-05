@@ -6,7 +6,9 @@
 
     "screen.nano.roleplay.spurt.button.save.text": "Save",
     "screen.nano.roleplay.spurt.button.mode.prefix": "Mode",
+
     "screen.nano.scale_combiner.title": "Scale Combiner",
+    "screen.nano.scale_normalizer.title": "Scale Normalizer",
 
     "component.nano.item_scale.tooltip": "Scale: %1$s",
     "commands.nano.nano.fail": "No nano commands have been registered! Did you forget to add the mod nano-commands?",
@@ -22,5 +24,6 @@
 
     "itemGroup.nano.nano": "Nano",
 
-    "block.nano.scale_combiner": "Scale Combiner"
+    "block.nano.scale_combiner": "Scale Combiner",
+    "block.nano.scale_normalizer": "Scale Normalizer"
 }

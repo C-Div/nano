@@ -1,6 +1,7 @@
 package cdiv.nano;
 
 import cdiv.nano.blocks.entities.ScaleCombinerBlockEntity;
+import cdiv.nano.blocks.entities.ScaleNormalizerBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
@@ -9,8 +10,8 @@ import net.minecraft.registry.Registry;
 import org.jetbrains.annotations.NotNull;
 
 public class BlockEntities {
-    public static final BlockEntityType<ScaleCombinerBlockEntity> SCALE_COMBINER =
-        register("scale_combiner", ScaleCombinerBlockEntity::new, Blocks.SCALE_COMBINER);
+    public static final BlockEntityType<ScaleCombinerBlockEntity> SCALE_COMBINER = register("scale_combiner", ScaleCombinerBlockEntity::new, Blocks.SCALE_COMBINER);
+    public static final BlockEntityType<ScaleNormalizerBlockEntity> SCALE_NORMALIZER = register("scale_normalizer", ScaleNormalizerBlockEntity::new, Blocks.SCALE_NORMALIZER);
 
     public static void initialize() {
         Nano.LOGGER.info("Registering blocks entities...");

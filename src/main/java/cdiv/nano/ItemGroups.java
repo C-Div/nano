@@ -14,9 +14,9 @@ import net.minecraft.util.Identifier;
 public class ItemGroups {
     @SuppressWarnings("unused")
     public static final ItemGroup NANO = register(
-        "nano",
+        "nano", Items.SCALE_COMBINER,
         Items.SCALE_COMBINER,
-        Items.SCALE_COMBINER
+        Items.SCALE_NORMALIZER
     );
 
     @SafeVarargs

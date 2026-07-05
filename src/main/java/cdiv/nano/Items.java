@@ -10,6 +10,7 @@ import static cdiv.nano.Nano.LOGGER;
 
 public class Items {
     public static final BlockItem SCALE_COMBINER = registerBlock("scale_combiner", Blocks.SCALE_COMBINER);
+    public static final BlockItem SCALE_NORMALIZER = registerBlock("scale_normalizer", Blocks.SCALE_NORMALIZER);
 
     public static void initialize() {
         LOGGER.debug("Registering items...");

@@ -1,6 +1,7 @@
 {
     "replace": false,
     "values": [
-        "nano:scale_combiner"
+        "nano:scale_combiner",
+        "nano:scale_normalizer"
     ]
 }

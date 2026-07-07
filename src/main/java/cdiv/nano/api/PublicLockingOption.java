@@ -1,5 +1,7 @@
 package cdiv.nano.api;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Similar to {@link BaseLockingOption}, but can only be locked by Nano
  * @see BaseLockingOption
@@ -7,7 +9,7 @@ package cdiv.nano.api;
  */
 public class PublicLockingOption<T> extends BaseLockingOption<T> {
     /**
-     * Constructs a new PackageLockingOption with a null value
+     * Constructs a new {@link PublicLockingOption} with a null value
      * @see Option#Option()
      */
     public PublicLockingOption() {
@@ -15,21 +17,21 @@ public class PublicLockingOption<T> extends BaseLockingOption<T> {
     }
 
     /**
-     * Constructs a new PackageLockingOption with the given default value
+     * Constructs a new {@link PublicLockingOption} with the given default value
      * @param value The default value
      * @see Option#Option(Object)
      */
-    public PublicLockingOption(final T value) {
+    public PublicLockingOption(@Nullable final T value) {
         super(value);
     }
 
     /**
-     * Constructs a new PackageLockingOption with the given default priority and value
+     * Constructs a new {@link PublicLockingOption} with the given default priority and value
      * @param priority The default priority
      * @param value The default value
      * @see Option#Option(int, Object)
      */
-    public PublicLockingOption(final int priority, final T value) {
+    public PublicLockingOption(final int priority, @Nullable final T value) {
         super(priority, value);
     }
 
@@ -42,8 +44,9 @@ public class PublicLockingOption<T> extends BaseLockingOption<T> {
 
     /**
      * Locks the option and returns its value
-     * @return The current value of the LockingOption
+     * @return The current value of the {@link PublicLockingOption}
      */
+    @Nullable
     public T lockAndGet() {
         return super.baseLockAndGet();
     }

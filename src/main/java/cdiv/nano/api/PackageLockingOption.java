@@ -1,6 +1,7 @@
 package cdiv.nano.api;
 
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -10,22 +11,12 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PackageLockingOption<T> extends BaseLockingOption<T> {
     /**
-     * Constructs a new {@link PackageLockingOption} with a null value
-     * @see Option#Option()
-     */
-    @SuppressWarnings("unused")
-    @ApiStatus.Internal
-    public PackageLockingOption() {
-        super();
-    }
-
-    /**
      * Constructs a new {@link PackageLockingOption} with the given default value
      * @param value The default value
      * @see Option#Option(Object)
      */
     @ApiStatus.Internal
-    public PackageLockingOption(@Nullable final T value) {
+    public PackageLockingOption(@NotNull final T value) {
         super(value);
     }
 
@@ -37,7 +28,7 @@ public class PackageLockingOption<T> extends BaseLockingOption<T> {
      */
     @SuppressWarnings("unused")
     @ApiStatus.Internal
-    public PackageLockingOption(final int priority, @Nullable final T value) {
+    public PackageLockingOption(final int priority, @NotNull final T value) {
         super(priority, value);
     }
 

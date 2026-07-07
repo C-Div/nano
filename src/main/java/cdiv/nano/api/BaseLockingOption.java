@@ -1,5 +1,6 @@
 package cdiv.nano.api;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -11,19 +12,11 @@ public abstract class BaseLockingOption<T> extends Option<T> {
     protected volatile boolean locked = false;
 
     /**
-     * Constructs a new {@link BaseLockingOption} with a null value
-     * @see Option#Option()
-     */
-    protected BaseLockingOption() {
-        super();
-    }
-
-    /**
      * Constructs a new {@link BaseLockingOption} with the given default value
      * @param value The default value
      * @see Option#Option(Object)
      */
-    protected BaseLockingOption(@Nullable final T value) {
+    protected BaseLockingOption(@NotNull final T value) {
         super(value);
     }
 
@@ -33,7 +26,7 @@ public abstract class BaseLockingOption<T> extends Option<T> {
      * @param value The default value
      * @see Option#Option(int, Object)
      */
-    protected BaseLockingOption(final int priority, @Nullable final T value) {
+    protected BaseLockingOption(final int priority, @NotNull final T value) {
         super(priority, value);
     }
 
@@ -54,6 +47,7 @@ public abstract class BaseLockingOption<T> extends Option<T> {
     /**
      * @return Whether the option is locked
      */
+    @SuppressWarnings("unused")
     public boolean isLocked() {
         return locked;
     }

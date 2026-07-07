@@ -1,5 +1,6 @@
 package cdiv.nano.api;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -9,19 +10,12 @@ import org.jetbrains.annotations.Nullable;
  */
 public class PublicLockingOption<T> extends BaseLockingOption<T> {
     /**
-     * Constructs a new {@link PublicLockingOption} with a null value
-     * @see Option#Option()
-     */
-    public PublicLockingOption() {
-        super();
-    }
-
-    /**
      * Constructs a new {@link PublicLockingOption} with the given default value
      * @param value The default value
      * @see Option#Option(Object)
      */
-    public PublicLockingOption(@Nullable final T value) {
+    @SuppressWarnings("unused")
+    public PublicLockingOption(@NotNull final T value) {
         super(value);
     }
 
@@ -31,13 +25,15 @@ public class PublicLockingOption<T> extends BaseLockingOption<T> {
      * @param value The default value
      * @see Option#Option(int, Object)
      */
-    public PublicLockingOption(final int priority, @Nullable final T value) {
+    @SuppressWarnings("unused")
+    public PublicLockingOption(final int priority, @NotNull final T value) {
         super(priority, value);
     }
 
     /**
      * Locks the option preventing its value and priority from being changed
      */
+    @SuppressWarnings("unused")
     public synchronized boolean lock() {
         return super.baseLock();
     }
@@ -47,6 +43,7 @@ public class PublicLockingOption<T> extends BaseLockingOption<T> {
      * @return The current value of the {@link PublicLockingOption}
      */
     @Nullable
+    @SuppressWarnings("unused")
     public T lockAndGet() {
         return super.baseLockAndGet();
     }

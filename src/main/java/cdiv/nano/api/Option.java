@@ -1,9 +1,11 @@
 package cdiv.nano.api;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Supplier;
 
 import static cdiv.nano.Nano.LOGGER;
 
@@ -12,27 +14,20 @@ import static cdiv.nano.Nano.LOGGER;
  * @param <T> The value type
  */
 public class Option<T> { // FUTURE: Rework this annoying shit
-    @Nullable
+    @NotNull
     public final T defaultValue;
 
     @Nullable
-    private T value = null;
+    private T value;
     private int priority = 0;
 
     protected final List<OptionListener<T>> listeners = new CopyOnWriteArrayList<>();
 
     /**
-     * Constructs a new {@link Option} with a null value
-     */
-    public Option() {
-        this.defaultValue = null;
-    }
-
-    /**
      * Constructs a new {@link Option} with the given default value
      * @param value The default value
      */
-    public Option(final @Nullable T value) {
+    public Option(final @NotNull T value) {
         this.defaultValue = value;
         this.value = value;
     }
@@ -42,7 +37,7 @@ public class Option<T> { // FUTURE: Rework this annoying shit
      * @param priority The default priority
      * @param value The default value
      */
-    public Option(final int priority, final @Nullable T value) {
+    public Option(final int priority, final @NotNull T value) {
         this.priority = priority;
         this.defaultValue = value;
         this.value = value;
@@ -64,8 +59,48 @@ public class Option<T> { // FUTURE: Rework this annoying shit
     }
 
     /**
+     * @return The current value or the default value if null
+     */
+    @NotNull
+    public T getOrDefault() {
+        T value = get();
+
+        if (value == null)
+            return defaultValue;
+
+        return value;
+    }
+
+    /**
+     * @return The current value or the given value if null
+     */
+    @SuppressWarnings("unused")
+    public T getOrElse(T other) {
+        T value = get();
+
+        if (value == null)
+            return other;
+
+        return value;
+    }
+
+    /**
+     * @return The current value or the value from the given supplier if null
+     */
+    @SuppressWarnings("unused")
+    public T getOrElse(Supplier<T> other) {
+        T value = get();
+
+        if (value == null)
+            return other.get();
+
+        return value;
+    }
+
+    /**
      * @return Whether the current value is null
      */
+    @SuppressWarnings("unused")
     public boolean isPresent() {
         return value != null;
     }
@@ -78,6 +113,7 @@ public class Option<T> { // FUTURE: Rework this annoying shit
      *
      * @apiNote A current priority of 0 specially allows values of priority 0 to override it
      */
+    @SuppressWarnings("unused")
     public boolean set(@Nullable final T value, final int priority) {
         final T oldValue;
         final int oldPriority;
@@ -109,6 +145,7 @@ public class Option<T> { // FUTURE: Rework this annoying shit
      * Adds the given listener for value or priority changes
      * @param listener The listener
      */
+    @SuppressWarnings("unused")
     public boolean addListener(final OptionListener<T> listener) {
         return listeners.add(listener);
     }
@@ -117,6 +154,7 @@ public class Option<T> { // FUTURE: Rework this annoying shit
      * Removes the given listener from value or priority changes
      * @param listener The listener
      */
+    @SuppressWarnings("unused")
     public boolean removeListener(final OptionListener<T> listener) {
         return listeners.remove(listener);
     }

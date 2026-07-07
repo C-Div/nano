@@ -1,5 +1,7 @@
 package cdiv.nano.api;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -9,32 +11,40 @@ import static cdiv.nano.Nano.LOGGER;
  * <p>An API option that uses the value with the highest priority</p>
  * @param <T> The value type
  */
-public class Option<T> {
+public class Option<T> { // FUTURE: Rework this annoying shit
+    @Nullable
+    public final T defaultValue;
+
+    @Nullable
     private T value = null;
     private int priority = 0;
 
     protected final List<OptionListener<T>> listeners = new CopyOnWriteArrayList<>();
 
     /**
-     * Constructs a new Option with a null value
+     * Constructs a new {@link Option} with a null value
      */
-    public Option() {}
+    public Option() {
+        this.defaultValue = null;
+    }
 
     /**
-     * Constructs a new Option with the given default value
+     * Constructs a new {@link Option} with the given default value
      * @param value The default value
      */
-    public Option(final T value) {
+    public Option(final @Nullable T value) {
+        this.defaultValue = value;
         this.value = value;
     }
 
     /**
-     * Constructs a new Option with the given default priority and value
+     * Constructs a new {@link Option} with the given default priority and value
      * @param priority The default priority
      * @param value The default value
      */
-    public Option(final int priority, final T value) {
+    public Option(final int priority, final @Nullable T value) {
         this.priority = priority;
+        this.defaultValue = value;
         this.value = value;
     }
 
@@ -48,6 +58,7 @@ public class Option<T> {
     /**
      * @return The current value
      */
+    @Nullable
     public T get() {
         return value;
     }
@@ -67,7 +78,7 @@ public class Option<T> {
      *
      * @apiNote A current priority of 0 specially allows values of priority 0 to override it
      */
-    public boolean set(final T value, final int priority) {
+    public boolean set(@Nullable final T value, final int priority) {
         final T oldValue;
         final int oldPriority;
 

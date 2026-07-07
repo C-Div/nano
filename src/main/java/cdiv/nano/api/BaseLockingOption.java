@@ -1,5 +1,7 @@
 package cdiv.nano.api;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * <p>Similar to {@link cdiv.nano.api.Option}, but provides the ability to lock the option, rejecting attempted updates</p>
  * @see cdiv.nano.api.Option
@@ -9,7 +11,7 @@ public abstract class BaseLockingOption<T> extends Option<T> {
     protected volatile boolean locked = false;
 
     /**
-     * Constructs a new BaseLockingOption with a null value
+     * Constructs a new {@link BaseLockingOption} with a null value
      * @see Option#Option()
      */
     protected BaseLockingOption() {
@@ -17,21 +19,21 @@ public abstract class BaseLockingOption<T> extends Option<T> {
     }
 
     /**
-     * Constructs a new BaseLockingOption with the given default value
+     * Constructs a new {@link BaseLockingOption} with the given default value
      * @param value The default value
      * @see Option#Option(Object)
      */
-    protected BaseLockingOption(final T value) {
+    protected BaseLockingOption(@Nullable final T value) {
         super(value);
     }
 
     /**
-     * Constructs a new BaseLockingOption with the given default priority and value
+     * Constructs a new {@link BaseLockingOption} with the given default priority and value
      * @param priority The default priority
      * @param value The default value
      * @see Option#Option(int, Object)
      */
-    protected BaseLockingOption(final int priority, final T value) {
+    protected BaseLockingOption(final int priority, @Nullable final T value) {
         super(priority, value);
     }
 
@@ -42,7 +44,7 @@ public abstract class BaseLockingOption<T> extends Option<T> {
      * @return Whether the value was changed
      */
     @Override
-    public boolean set(final T value, final int priority) {
+    public boolean set(@Nullable final T value, final int priority) {
         if (this.locked)
             return false;
 
@@ -83,8 +85,9 @@ public abstract class BaseLockingOption<T> extends Option<T> {
 
     /**
      * Locks the option and returns its value
-     * @return The current value of the LockingOption
+     * @return The current value of the {@link BaseLockingOption}
      */
+    @Nullable
     protected T baseLockAndGet() {
         baseLock();
         return get();

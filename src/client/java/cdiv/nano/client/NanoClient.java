@@ -32,15 +32,22 @@ import java.util.Optional;
 public class NanoClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
+		SharedInteractions.initializeMiningPositionGetter(player -> {
+			ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
+
+			if (interactionManager == null)
+				return Optional.empty();
+
+			return ((WidenedClientPlayerInteractionManager) interactionManager).nano$getMiningPosition();
+		});
+
 		if (FabricLoader.getInstance().isModLoaded("firstperson")) {
-			SharedInteractions.initializeMiningPositionGetter(player -> {
-				ClientPlayerInteractionManager interactionManager = MinecraftClient.getInstance().interactionManager;
+			FirstPersonAPI.registerPlayerHandler(((PlayerOffsetHandler) (player, delta, zero, offset) -> {
+				if (Boolean.FALSE.equals(FirstPersonModel.bodyOffsetScalingEnabled.get()))
+					return offset;
 
-				if (interactionManager == null)
-					return Optional.empty();
-
-				return ((WidenedClientPlayerInteractionManager) interactionManager).nano$getMiningPosition();
-			});
+				return offset.multiply(ScaleTypes.BASE.getScaleData(player).getScale());
+			}));
 		}
 
 		HandledScreens.register(
@@ -53,8 +60,9 @@ public class NanoClient implements ClientModInitializer {
 			ScaleNormalizerScreen::new
 		);
 
-		FabricLoader
-			.getInstance()
+		FabricLoader fabricLoader = FabricLoader.getInstance();
+
+		fabricLoader
 			.getEntrypoints("nano-client", NanoClientIntegration.class)
 			.forEach(NanoClientIntegration::onNanoInitialize);
 

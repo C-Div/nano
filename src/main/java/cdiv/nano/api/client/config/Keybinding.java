@@ -1,6 +1,6 @@
 package cdiv.nano.client.api.config;
 
-import cdiv.nano.client.PackageLockingOption;
+import cdiv.nano.api.PackageLockingOption;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class Keybinding {

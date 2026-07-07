@@ -85,13 +85,28 @@ dependencies {
 </details>
 <details>
 <summary>The API</summary>
+<details>
+<summary>Breaking Changes</summary>
+<details>
+<summary>0.0.1-alpha.23</summary>
+
+> API received a refactor, with the `config` package and `NanoClientIntegration` class being moved from `nano.client.api` to a new `nano.api.client` package.
+> 
+> Client `nano.client.PackageLockingOption` has been removed in favor of a common moved `nano.api.PackageLockingOption` with `@ApiStatus.Internal`.
+> 
+> Option API has been changed to disallow null construction.
+> 
+> Fields on mixins have been made final where possible.
+>
+> Loot scaling was changed to not apply to modded entities by default, instead modded entities must now be registered via `LootScaling` in `nano.registry.Registries`.
+</details>
+</details>
 
 ### Notes
 > API here is subject to change while Nano is in alpha. Any undocumented API should be considered incomplete, not implemented, or unstable, and should not be used.
 
 ### Why X is not a part of the API
-#### Loot scaling registry
-As far as I can tell, it is not possible to get the entity type from a Loot Table Registry Key.
+Empty
 
 ### API Classes
 
@@ -148,12 +163,11 @@ public class YourModClient implements NanoClientIntegration {
 #### `Option`
 Class that represents an API option. Supports change listeners via `OptionListener` and value prioritization using `priority`.
 Note all options have their default values set with a priority of 0.
+> To tell whether an API option was configured by the client, use the `MidnightLibIntegration` fields.
 #### `LockingOption`/`PackageLockingOption`
 Similar to Option, but comes with the added feature of locking, after an option is locked it cannot be set.
-`PackageLockingOption` is different from `LockingOption` in that it can only be locked by Nano, this is usually
+`PackageLockingOption` is different from `LockingOption` in that it should only be locked by Nano, this is usually
 for options that can only be read once. To see when a `PackageLockingOption` locks check the class's Javadocs.
-
-Note that there is a separate `PackageLockingOption` for both the client and common side.
 
 ### API Configuration
 <details>
@@ -166,6 +180,7 @@ Configuration for food, being nutrition scaling, saturation scaling, and over ea
 Configuration for items, being item scaling and item drop scaling.
 #### `Loot`
 Configuration for mob loot, being loot scaling.
+> Note that even if enabled, the loot scaling does **not** apply to modded entities, see API Registries for that.
 #### `Pathfinding`
 Configuration for mob pathfinding, being pathfinding scaling and pathfinding minimum scaling.
 > Note that even if enabled, the pathfinding scaling does **not** apply to modded entities, see API Registries for that.
@@ -209,6 +224,9 @@ Events related to mob loot scaling
 #### `PathfindingScaling`
 This registry contains each `EntityType` that should be affected by `Pathfinding` configuration.
 This is intended to be an opt-in system for mods.
+### `LootScaling`
+This registry contains each `EntityType` that should be affected by `Looting` configuration.
+This is intended to be an opt-in system for mods.
 #### `FoodScaling`
 This registry contains each `Item` that should be affected by `Food` configuration.
 This is intended to be an opt-in system for mods.
@@ -237,6 +255,12 @@ At the time of writing, there are no official setup instructions in their [repos
 
 You can instead add it using Modrinth's Maven repository.
 Official instructions from Modrinth exist for each individual mod version, for reference Nano uses version [2.7.2 for Minecraft 1.21.1](https://modrinth.com/mod/first-person-model/version/fSfRdYJ6)
+
+### Mod Menu
+Official instructions can be found in their [repository](https://github.com/TerraformersMC/ModMenu).
+
+### Midnight Lib
+Official instructions can be found in their [wiki](https://www.midnightdust.eu/wiki/midnightlib/).
 
 ### Pekhui
 Official instructions can be found in their [repository](https://github.com/Virtuoel/Pehkui).

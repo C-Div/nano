@@ -35,7 +35,7 @@ public class ScaledLoot extends ConditionalLootFunction {
 
     @Override
     protected ItemStack process(ItemStack stack, LootContext context) {
-        if (!Loot.lootScalingEnabled.get() || Boolean.TRUE.equals(stack.get(Components.LOOT_SCALED)))
+        if (!Loot.lootScalingEnabled.getOrDefault() || stack.getOrDefault(Components.LOOT_SCALED, false))
             return stack;
 
         stack.set(Components.LOOT_SCALED, true);

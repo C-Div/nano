@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
 public class GrowthSound extends MovingSoundInstance {
+    @SuppressWarnings("unused")
     @NotNull final PlayerEntity player;
     @NotNull final Entity entity;
 

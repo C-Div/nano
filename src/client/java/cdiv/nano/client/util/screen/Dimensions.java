@@ -2,7 +2,7 @@ package cdiv.nano.client.util.screen;
 
 import net.minecraft.client.gui.screen.Screen;
 
-@SuppressWarnings("UnusedReturnValue")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public interface Dimensions {
     Dimensions setX(double scaleX);
     Dimensions setX(int offsetX);

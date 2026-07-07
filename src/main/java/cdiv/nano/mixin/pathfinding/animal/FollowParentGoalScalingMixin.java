@@ -20,15 +20,15 @@ public class FollowParentGoalScalingMixin {
     @Final
     private AnimalEntity animal;
 
-    @Unique MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
-    @Unique MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
+    @Unique final MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
+    @Unique final MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
 
-    @Unique MixinHelper.DoubleReference nano$cachedExpandHorizontalValue = new MixinHelper.DoubleReference();
-    @Unique MixinHelper.DoubleReference nano$cachedExpandVerticalValue = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedExpandHorizontalValue = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedExpandVerticalValue = new MixinHelper.DoubleReference();
 
-    @Unique MixinHelper.DoubleReference nano$cachedMinimumContinueDistance = new MixinHelper.DoubleReference();
-    @Unique MixinHelper.DoubleReference nano$cachedMaximumContinueDistance = new MixinHelper.DoubleReference();
-    @Unique MixinHelper.DoubleReference nano$cachedSquaredDistance = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedMinimumContinueDistance = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedMaximumContinueDistance = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedSquaredDistance = new MixinHelper.DoubleReference();
 
     @Unique
     public double nano$getConstant(double constant, MixinHelper.DoubleReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {

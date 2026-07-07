@@ -62,20 +62,20 @@ public class MixinHelper {
 
     @SuppressWarnings("unused")
     public static boolean isPathfindingScalingAllowed(Entity entity) {
-        return Pathfinding.pathfindingScalingEnabled.get()
+        return Pathfinding.pathfindingScalingEnabled.getOrDefault()
             && (!EntityHelper.isModdedEntity(entity)
             || cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
     public static boolean isPathfindingScalingDisallowed(Entity entity) {
-        return !Pathfinding.pathfindingScalingEnabled.get()
+        return !Pathfinding.pathfindingScalingEnabled.getOrDefault()
             || (EntityHelper.isModdedEntity(entity)
             && !cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
 
     public static boolean isPathfindingMinimumScalingDisallowed(Entity entity) {
-        return !Pathfinding.pathfindingScalingEnabled.get()
-            || !Pathfinding.pathfindingMinimumScalingEnabled.get()
+        return !Pathfinding.pathfindingScalingEnabled.getOrDefault()
+            || !Pathfinding.pathfindingMinimumScalingEnabled.getOrDefault()
             || (EntityHelper.isModdedEntity(entity)
             && !cdiv.nano.registry.Registries.PathfindingScaling.has(entity.getType()));
     }
@@ -110,6 +110,7 @@ public class MixinHelper {
             return this.initialized;
         }
 
+        @SuppressWarnings("unused")
         public double get() {
             return this.value;
         }
@@ -137,6 +138,7 @@ public class MixinHelper {
             return this.initialized;
         }
 
+        @SuppressWarnings("unused")
         public float get() {
             return this.value;
         }
@@ -164,6 +166,7 @@ public class MixinHelper {
             return this.initialized;
         }
 
+        @SuppressWarnings("unused")
         public int get() {
             return this.value;
         }

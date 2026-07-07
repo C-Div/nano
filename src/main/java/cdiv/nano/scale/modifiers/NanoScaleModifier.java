@@ -5,10 +5,7 @@ import cdiv.nano.api.config.ScaleModifiers;
 import virtuoel.pehkui.api.ScaleData;
 import virtuoel.pehkui.api.ScaleModifier;
 
-import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class NanoScaleModifier<T extends ScaleModifier> extends ScaleModifier {
     protected final T scaleModifier;
@@ -21,11 +18,11 @@ public class NanoScaleModifier<T extends ScaleModifier> extends ScaleModifier {
     }
 
     private boolean isModificationDisallowed() {
-        if (!ScaleModifiers.scaleModifiersEnabled.get())
+        if (!ScaleModifiers.scaleModifiersEnabled.getOrDefault())
             return true;
 
         for (Map.Entry<Option<Boolean>, Boolean> entry : requiredOptions.entrySet()) {
-            if (entry.getKey().get() == entry.getValue())
+            if (entry.getKey().getOrDefault() == entry.getValue())
                 continue;
 
             return true;

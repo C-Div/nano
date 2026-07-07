@@ -1,7 +1,6 @@
 package cdiv.nano.blocks;
 
 import cdiv.nano.BlockEntities;
-import cdiv.nano.blocks.entities.ScaleCombinerBlockEntity;
 import cdiv.nano.blocks.entities.ScaleNormalizerBlockEntity;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.BlockRenderType;

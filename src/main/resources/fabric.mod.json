@@ -51,10 +51,12 @@
 	},
 	"suggests": {
 		"firstperson": "2.7.2",
-		"appleskin": "3.0.6"
+		"appleskin": "3.0.6",
+		"modmenu": "*"
 	},
 	"recommends": {
-		"modelfix": "*"
+		"modelfix": "*",
+		"midnightlib": "*"
 	},
 	"conflicts": {
 		"scopic": "*"

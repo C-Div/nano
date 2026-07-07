@@ -16,8 +16,8 @@ public class AppleSkinIntegration implements AppleSkinApi {
     @Override
     public void registerEvents() {
         FoodValuesEvent.EVENT.register(foodValues -> {
-            if (Boolean.FALSE.equals(AppleSkin.integrationEnabled.get())
-                || (Boolean.FALSE.equals(Food.foodNutritionScalingEnabled.get()) && Boolean.FALSE.equals(Food.foodSaturationScalingEnabled.get())))
+            if (AppleSkin.integrationEnabled.getOrDefault()
+                || (Food.foodNutritionScalingEnabled.getOrDefault() && Food.foodSaturationScalingEnabled.getOrDefault()))
                 return;
 
             ItemStack itemStack = foodValues.itemStack;
@@ -31,11 +31,11 @@ public class AppleSkinIntegration implements AppleSkinApi {
             final FoodComponent modifiedFoodComponent = foodValues.modifiedFoodComponent;
             final double relativeScale = itemScale / ScaleTypes.BASE.getScaleData(foodValues.player).getScale();
 
-            final int relativeNutritionGain = (Boolean.TRUE.equals(Food.foodNutritionScalingEnabled.get()))
+            final int relativeNutritionGain = (Food.foodNutritionScalingEnabled.getOrDefault())
                 ? (int) Math.round(defaultFoodComponent.nutrition() * relativeScale) - defaultFoodComponent.nutrition()
                 : defaultFoodComponent.nutrition();
 
-            final float relativeSaturationGain = (Boolean.TRUE.equals(Food.foodSaturationScalingEnabled.get()))
+            final float relativeSaturationGain = (Food.foodSaturationScalingEnabled.getOrDefault())
                 ? (float) (defaultFoodComponent.saturation() * relativeScale) -  defaultFoodComponent.saturation()
                 : defaultFoodComponent.saturation();
 

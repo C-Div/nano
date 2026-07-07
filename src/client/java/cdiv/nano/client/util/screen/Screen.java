@@ -44,6 +44,7 @@ public class Screen extends net.minecraft.client.gui.screen.Screen {
         addDrawables(this.client);
     }
 
+    @SuppressWarnings("unused")
     protected void addDrawables(@NotNull MinecraftClient client) {}
 
     public boolean isOpen() {

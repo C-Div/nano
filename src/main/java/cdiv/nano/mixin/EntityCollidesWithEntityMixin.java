@@ -18,7 +18,7 @@ public class EntityCollidesWithEntityMixin {
         method = "pushAway"
     )
 	private void nano$pushAway$steppingDamageLogic(Entity other, CallbackInfo callbackInfo) {
-		if (!Stepping.damageEnabled.get())
+		if (Stepping.damageEnabled.getOrDefault())
 			return;
 
 		LivingEntity entity = MixinHelper.asLivingEntity(this);
@@ -38,7 +38,7 @@ public class EntityCollidesWithEntityMixin {
 
 		double relativeHeight = dimensions.height() / otherDimensions.height();
 
-		if (relativeHeight < Stepping.damageRelativeHeightThreshold.get())
+		if (relativeHeight < Stepping.damageRelativeHeightThreshold.getOrDefault())
 			return;
 
 		Nano.LOGGER.info("Entity: {}", entity.getName().getString());

@@ -33,6 +33,7 @@ public class BoundDimensions<DimensionsType extends Dimensions> extends Dimensio
         return screen;
     }
 
+    @SuppressWarnings("unused")
     public void setScreen(@NotNull Screen screen) {
         this.screen = screen;
     }

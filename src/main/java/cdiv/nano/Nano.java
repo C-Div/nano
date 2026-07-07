@@ -96,7 +96,7 @@ public class Nano implements ModInitializer {
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
 			if (!source.isBuiltin()
 				|| !key.getValue().getPath().startsWith("entities/")
-				|| !Loot.lootScalingEnabled.get())
+				|| !Loot.lootScalingEnabled.getOrDefault())
 				return;
 
 			tableBuilder.apply(() -> new ScaledLoot(List.of()));

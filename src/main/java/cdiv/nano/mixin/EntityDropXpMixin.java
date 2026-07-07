@@ -26,7 +26,7 @@ public class EntityDropXpMixin {
         cancellable = true
     )
     void nano$getXpToDrop$scaleXp(ServerWorld world, Entity attacker, CallbackInfoReturnable<Integer> callbackInfoReturnable) {
-        if (!Xp.xpScalingEnabled.get())
+        if (!Xp.xpScalingEnabled.getOrDefault())
             return;
 
         LivingEntity entity = MixinHelper.asLivingEntity(this);

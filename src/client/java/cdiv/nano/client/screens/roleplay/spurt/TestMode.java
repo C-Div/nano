@@ -15,6 +15,7 @@ public class TestMode extends SpurtModeUI {
     );
 
     @NotNull
+    @SuppressWarnings("unused")
     public final SpurtScreen SCREEN;
 
     public TestMode(@NotNull SpurtScreen screen) {

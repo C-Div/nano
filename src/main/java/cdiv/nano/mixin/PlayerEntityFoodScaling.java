@@ -37,7 +37,7 @@ public abstract class PlayerEntityFoodScaling {
         method = "eatFood(Lnet/minecraft/world/World;Lnet/minecraft/item/ItemStack;Lnet/minecraft/component/type/FoodComponent;)Lnet/minecraft/item/ItemStack;"
     )
     public void nano$eatFood$foodScaler(World world, ItemStack stack, FoodComponent foodComponent, CallbackInfoReturnable<ItemStack> callbackInfoReturnable) {
-        if (!Food.foodScalingEnabled.get() || (!Food.foodSaturationScalingEnabled.get() && !Food.foodNutritionScalingEnabled.get()))
+        if (!Food.foodScalingEnabled.getOrDefault() || (!Food.foodSaturationScalingEnabled.getOrDefault() && !Food.foodNutritionScalingEnabled.getOrDefault()))
             return;
 
         Item item = stack.getItem();
@@ -56,19 +56,19 @@ public abstract class PlayerEntityFoodScaling {
 
         final double relativeScale = itemScale / scaleData.getScale();
 
-        final int nutritionGain = (Food.foodNutritionScalingEnabled.get())
+        final int nutritionGain = (Food.foodNutritionScalingEnabled.getOrDefault())
             ? (int) Math.round(foodComponent.nutrition() * relativeScale) - foodComponent.nutrition()
             : 0;
 
-        final int clampedNutrition = (Food.overeatingEnabled.get())
+        final int clampedNutrition = (Food.overeatingEnabled.getOrDefault())
             ? hungerManager.getFoodLevel() + nutritionGain - 20
             : 0;
 
-        final float saturationGain = (Food.foodSaturationScalingEnabled.get())
+        final float saturationGain = (Food.foodSaturationScalingEnabled.getOrDefault())
             ? (float) (foodComponent.saturation() * relativeScale - foodComponent.saturation())
             : 0;
 
-        if (clampedNutrition > 0 && relativeScale > Food.overeatingThreshold.get())
+        if (clampedNutrition > 0 && relativeScale > Food.overeatingThreshold.getOrDefault())
             entity.damage(
                 DamageSources.getOvereatingDamage(world),
                 clampedNutrition

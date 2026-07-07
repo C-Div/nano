@@ -1,6 +1,5 @@
 package cdiv.nano.scale.modifiers;
 
-import cdiv.nano.Nano;
 import net.minecraft.entity.Entity;
 import org.jetbrains.annotations.Nullable;
 import virtuoel.pehkui.api.ScaleData;

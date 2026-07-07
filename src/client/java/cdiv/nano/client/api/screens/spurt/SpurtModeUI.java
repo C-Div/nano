@@ -1,11 +1,11 @@
 package cdiv.nano.client.api.screens.spurt;
 
-import cdiv.nano.client.screens.roleplay.SpurtScreen;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.CyclingButtonWidget;
 import net.minecraft.text.Text;
 
+@SuppressWarnings("unused")
 public abstract class SpurtModeUI {
     public abstract SpurtModeUIType<? extends SpurtModeUI> getType();
 

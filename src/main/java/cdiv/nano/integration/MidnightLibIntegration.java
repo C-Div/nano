@@ -5,7 +5,6 @@ import cdiv.nano.api.client.config.AppleSkin;
 import cdiv.nano.api.client.config.FirstPersonModel;
 import eu.midnightdust.lib.config.MidnightConfig;
 
-@SuppressWarnings("DataFlowIssue")
 public class MidnightLibIntegration extends MidnightConfig {
     public static final String FOOD = "food";
     public static final String ITEM = "item";

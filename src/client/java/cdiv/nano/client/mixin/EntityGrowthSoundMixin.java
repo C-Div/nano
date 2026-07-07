@@ -35,6 +35,7 @@ public abstract class EntityGrowthSoundMixin {
 
     @Unique public MovingSoundInstance nano$growthSound = null;
 
+    @SuppressWarnings("NameDoesntMatchTargetClass")
     @Inject(
         method = "tick()V",
         at = @At(
@@ -43,7 +44,7 @@ public abstract class EntityGrowthSoundMixin {
         )
     )
     public void nano$tick$playGrowthSound(CallbackInfo callbackInfo, @Local(name = "currScale") float currentScale) {
-        if (!Sound.growthSoundsEnabled.get() || entity == null || !entity.getWorld().isClient || prevBaseScale >= baseScale)
+        if (!Sound.growthSoundsEnabled.getOrDefault() || entity == null || !entity.getWorld().isClient || prevBaseScale >= baseScale)
             return;
 
         if (scaleTicks >= totalScaleTicks || currentScale == getTargetScale()) {
@@ -61,7 +62,7 @@ public abstract class EntityGrowthSoundMixin {
         SoundEvent sound;
 
         do {
-            sound = (Sound.longGrowthSoundsEnabled.get() && totalScaleTicks - scaleTicks >= 80)
+            sound = (Sound.longGrowthSoundsEnabled.getOrDefault() && totalScaleTicks - scaleTicks >= 80)
                 ? Sounds.getRandomLongGrowthSound()
                 : Sounds.getRandomShortGrowthSound();
         } while(nano$growthSound != null && sound.getId() == nano$growthSound.getId());

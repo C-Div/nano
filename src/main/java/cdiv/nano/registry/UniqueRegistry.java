@@ -14,6 +14,7 @@ public class UniqueRegistry<T> {
         IDENTIFIER_FROM_OBJECT = identifierFromObject;
     }
 
+    @SuppressWarnings("unused")
     public boolean has(Identifier identifier) {
         return ENTRIES.contains(identifier);
     }
@@ -22,6 +23,7 @@ public class UniqueRegistry<T> {
         return ENTRIES.contains(IDENTIFIER_FROM_OBJECT.apply(object));
     }
 
+    @SuppressWarnings("unused")
     public boolean register(Identifier identifier) {
         return ENTRIES.add(identifier);
     }

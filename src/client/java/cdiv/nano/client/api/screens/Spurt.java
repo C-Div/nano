@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Spurt {
+    @SuppressWarnings("unused")
     public static Option<Boolean> defaultModesEnabled = new Option<>(true);
 
     /**

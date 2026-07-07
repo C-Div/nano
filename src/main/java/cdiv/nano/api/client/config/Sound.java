@@ -1,7 +1,6 @@
 package cdiv.nano.api.client.config;
 
 import cdiv.nano.api.ConfigurableOption;
-import cdiv.nano.api.Option;
 import cdiv.nano.integration.MidnightLibIntegration;
 
 /**

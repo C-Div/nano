@@ -9,5 +9,6 @@ public @interface NotImplemented {
     /**
      * <p>The optional description</p>
      */
+    @SuppressWarnings("unused")
     String value() default "";
 }

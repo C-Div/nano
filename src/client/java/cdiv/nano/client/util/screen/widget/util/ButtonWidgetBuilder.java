@@ -39,6 +39,7 @@ public class ButtonWidgetBuilder extends ButtonWidget.Builder {
         return this;
     }
 
+    @SuppressWarnings("unused")
     public <T extends BoundDimensions<?>> ButtonWidgetBuilder size(T dimensions) {
         return size(dimensions.getScreen(), dimensions);
     }

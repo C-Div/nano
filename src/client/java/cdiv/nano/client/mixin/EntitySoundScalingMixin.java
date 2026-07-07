@@ -20,7 +20,7 @@ public class EntitySoundScalingMixin {
 		argsOnly = true
 	)
 	private float nano$playSound$soundScaling(float volume) {
-		if (!Sound.soundScalingEnabled.get())
+		if (!Sound.soundScalingEnabled.getOrDefault())
 			return volume;
 
 		Entity entity = MixinHelper.asEntity(this);

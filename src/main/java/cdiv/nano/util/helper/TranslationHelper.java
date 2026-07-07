@@ -8,6 +8,7 @@ public class TranslationHelper {
         return Nano.translation("screen", path);
     }
 
+    @SuppressWarnings("unused")
     public static MutableText screen(String path, Object... args) {
         return Nano.translation("screen", path, args);
     }

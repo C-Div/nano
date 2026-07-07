@@ -43,7 +43,7 @@ public class NanoClient implements ClientModInitializer {
 
 		if (FabricLoader.getInstance().isModLoaded("firstperson")) {
 			FirstPersonAPI.registerPlayerHandler(((PlayerOffsetHandler) (player, delta, zero, offset) -> {
-				if (Boolean.FALSE.equals(FirstPersonModel.bodyOffsetScalingEnabled.get()))
+				if (FirstPersonModel.bodyOffsetScalingEnabled.getOrDefault())
 					return offset;
 
 				return offset.multiply(ScaleTypes.BASE.getScaleData(player).getScale());

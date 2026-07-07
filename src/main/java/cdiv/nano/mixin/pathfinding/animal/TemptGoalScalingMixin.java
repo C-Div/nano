@@ -20,11 +20,11 @@ public class TemptGoalScalingMixin {
     @Final
     protected PathAwareEntity mob;
 
-    @Unique MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
-    @Unique MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
+    @Unique final MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
+    @Unique final MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
 
-    @Unique MixinHelper.DoubleReference nano$cachedSquaredNavigationDistance = new MixinHelper.DoubleReference();
-    @Unique MixinHelper.DoubleReference nano$cachedSquaredPlayerDistance = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedSquaredNavigationDistance = new MixinHelper.DoubleReference();
+    @Unique final MixinHelper.DoubleReference nano$cachedSquaredPlayerDistance = new MixinHelper.DoubleReference();
 
     @Unique
     public double nano$getConstant(double constant, MixinHelper.DoubleReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {

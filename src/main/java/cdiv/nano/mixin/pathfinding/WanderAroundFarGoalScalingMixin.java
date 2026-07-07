@@ -13,12 +13,12 @@ import static cdiv.nano.util.helper.MixinHelper.getPathfindingIntConstant;
 
 @org.spongepowered.asm.mixin.Mixin(WanderAroundFarGoal.class)
 public class WanderAroundFarGoalScalingMixin {
-    @Unique MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
-    @Unique MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
+    @Unique final MixinHelper.FloatReference nano$previousScale = new MixinHelper.FloatReference();
+    @Unique final MixinHelper.Reference<ScaleData> nano$cachedScaleData = new MixinHelper.Reference<>();
 
-    @Unique MixinHelper.IntReference nano$cachedWaterHorizontalRange = new MixinHelper.IntReference();
-    @Unique MixinHelper.IntReference nano$cachedHorizontalRange = new MixinHelper.IntReference();
-    @Unique MixinHelper.IntReference nano$cachedVerticalRange = new MixinHelper.IntReference();
+    @Unique final MixinHelper.IntReference nano$cachedWaterHorizontalRange = new MixinHelper.IntReference();
+    @Unique final MixinHelper.IntReference nano$cachedHorizontalRange = new MixinHelper.IntReference();
+    @Unique final MixinHelper.IntReference nano$cachedVerticalRange = new MixinHelper.IntReference();
 
     @Unique
     public int nano$getConstant(int constant, MixinHelper.IntReference cachedCalculatedValue, DoubleUnaryOperator scalingFunction) {

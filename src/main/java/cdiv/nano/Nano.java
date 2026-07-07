@@ -20,8 +20,10 @@ package cdiv.nano;
 
 import cdiv.nano.access.MovingPlayer;
 import cdiv.nano.api.config.Loot;
+import cdiv.nano.integration.MidnightLibIntegration;
 import cdiv.nano.loot.functions.ScaledLoot;
 import cdiv.nano.payload.IsPlayerMovingC2SPayload;
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -58,9 +60,13 @@ public class Nano implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		FabricLoader fabricLoader = FabricLoader.getInstance();
+
+		if (fabricLoader.isModLoaded("midnightlib"))
+			MidnightConfig.init(Nano.MOD_ID, MidnightLibIntegration.class);
+
 		// Run Nano integrations
-		FabricLoader
-			.getInstance()
+		fabricLoader
 			.getEntrypoints(MOD_ID, NanoIntegration.class)
 			.forEach(NanoIntegration::onNanoInitialize);
 

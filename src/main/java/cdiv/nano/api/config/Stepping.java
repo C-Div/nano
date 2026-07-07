@@ -1,6 +1,7 @@
 package cdiv.nano.api.config;
 
-import cdiv.nano.api.Option;
+import cdiv.nano.api.ConfigurableOption;
+import cdiv.nano.integration.MidnightLibIntegration;
 import net.minecraft.entity.EntityType;
 
 import java.util.HashSet;
@@ -13,12 +14,14 @@ public class Stepping {
     /**
      * <p>Whether mobs get damaged when bigger mobs walk into them</p>
      */
-    public static Option<Boolean> damageEnabled = new Option<>(true);
+    public static ConfigurableOption<Boolean> damageEnabled = new ConfigurableOption<>(true,
+        () -> MidnightLibIntegration.steppingDamageEnabled);
 
     /**
      * <p>The minimum relative height for an entity to be considered big enough to deal stepping damage</p>
      */
-    public static Option<Double> damageRelativeHeightThreshold = new Option<>(2.5D);
+    public static ConfigurableOption<Double> damageRelativeHeightThreshold = new ConfigurableOption<>(2.5D,
+        () -> MidnightLibIntegration.steppingDamageRelativeHeightThreshold);
 
     /**
      * <p>A set containing entities that should never take step damage.</p>

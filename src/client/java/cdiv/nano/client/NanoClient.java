@@ -77,14 +77,7 @@ public class NanoClient implements ClientModInitializer {
 				.formatted(Formatting.GRAY));
 		});
 
-		FirstPersonAPI.registerPlayerHandler(((PlayerOffsetHandler) (player, delta, zero, offset) -> {
-			if (!FirstPersonModel.bodyOffsetScalingEnabled.get())
-				return offset;
-
-			return offset.multiply(ScaleTypes.BASE.getScaleData(player).getScale());
-		}));
-
-		if (Keybinding.keybindsEnabled.lockAndGet() && Keybinding.debugKeybindsEnabled.lockAndGet()) {
+		if (Boolean.TRUE.equals(Keybinding.keybindsEnabled.lockAndGet()) && Boolean.TRUE.equals(Keybinding.debugKeybindsEnabled.lockAndGet())) {
 			RoleplayScreen roleplay = new RoleplayScreen();
 
 			KeyBinding debug1 = KeyBindingHelper.registerKeyBinding(

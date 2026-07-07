@@ -1,13 +1,16 @@
 package cdiv.nano.api.client.config;
 
+import cdiv.nano.api.ConfigurableOption;
 import cdiv.nano.api.Option;
+import cdiv.nano.integration.MidnightLibIntegration;
 
 /**
  * <p>Configuration related to the Apple Skin mod</p>
  */
 public class AppleSkin {
     /**
-     * <p>Whether the {@link cdiv.nano.client.integration.AppleSkinIntegration} is enabled.</p>
+     * <p>Whether the Apple Skin integration is enabled.</p>
      */
-    public static Option<Boolean> integrationEnabled = new Option<>(true);
+    public static ConfigurableOption<Boolean> integrationEnabled = new ConfigurableOption<>(true,
+        () -> MidnightLibIntegration.appleSkinIntegrationEnabled);
 }

@@ -1,7 +1,9 @@
 package cdiv.nano.api.config;
 
+import cdiv.nano.api.ConfigurableOption;
 import cdiv.nano.api.NotImplemented;
 import cdiv.nano.api.Option;
+import cdiv.nano.integration.MidnightLibIntegration;
 import net.minecraft.item.Item;
 
 import java.util.HashSet;
@@ -14,17 +16,20 @@ public class Food {
     /**
      * <p>Whether food scaling is enabled</p>
      */
-    public static Option<Boolean> foodScalingEnabled = new Option<>(true);
+    public static ConfigurableOption<Boolean> foodScalingEnabled = new ConfigurableOption<>(true,
+        () -> MidnightLibIntegration.foodScalingEnabled);
 
     /**
      * <p>Whether food nutrition scaling is enabled</p>
      */
-    public static Option<Boolean> foodNutritionScalingEnabled = new Option<>(true);
+    public static ConfigurableOption<Boolean> foodNutritionScalingEnabled = new ConfigurableOption<>(true,
+        () -> MidnightLibIntegration.foodNutritionScalingEnabled);
 
     /**
      * <p>Whether food saturation scaling is enabled</p>
      */
-    public static Option<Boolean> foodSaturationScalingEnabled = new Option<>(true);
+    public static ConfigurableOption<Boolean> foodSaturationScalingEnabled = new ConfigurableOption<>(true,
+        () -> MidnightLibIntegration.foodSaturationScalingEnabled);
 
     /**
      * <p>A set containing food items that should never have their nutrition or saturation values changed.</p>
@@ -37,10 +42,12 @@ public class Food {
     /**
      * <p>Whether food overeating is enabled</p>
      */
-    public static Option<Boolean> overeatingEnabled = new Option<>(true);
+    public static ConfigurableOption<Boolean> overeatingEnabled = new ConfigurableOption<>(true,
+        () -> MidnightLibIntegration.overeatingEnabled);
 
     /**
      * <p>The minimum relative scale of food to the eater to be considered overeating</p>
      */
-    public static Option<Double> overeatingThreshold = new Option<>(1.0D);
+    public static ConfigurableOption<Double> overeatingThreshold = new ConfigurableOption<>(1.0D,
+        () -> MidnightLibIntegration.overeatingThreshold);
 }

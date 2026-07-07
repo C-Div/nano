@@ -4,10 +4,13 @@ import cdiv.nano.Components;
 import cdiv.nano.LootFunctions;
 import cdiv.nano.api.config.Loot;
 import cdiv.nano.api.event.LootEvents;
+import cdiv.nano.registry.Registries;
+import cdiv.nano.util.helper.EntityHelper;
 import cdiv.nano.util.helper.ItemHelper;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.condition.LootCondition;
 import net.minecraft.loot.context.LootContext;
@@ -36,11 +39,14 @@ public class ScaledLoot extends ConditionalLootFunction {
             return stack;
 
         stack.set(Components.LOOT_SCALED, true);
-        stack.set(Components.ITEM_SCALE, 1.0D);
-
-        Entity entity = context.get(LootContextParameters.THIS_ENTITY);
+        final Entity entity = context.get(LootContextParameters.THIS_ENTITY);
 
         if (entity == null)
+            return stack;
+
+        final EntityType<?> entityType = entity.getType();
+
+        if (EntityHelper.isModdedEntity(entityType) && !Registries.LootScaling.has(entityType))
             return stack;
 
         ScaleData scaleData = ScaleTypes.BASE.getScaleData(entity);
@@ -56,11 +62,6 @@ public class ScaledLoot extends ConditionalLootFunction {
 
         final double finalScale = currentScale * multiplier;
         stack.set(Components.ITEM_SCALE, ItemHelper.resolveScale(stack, finalScale));
-
-        if (stack.getMaxCount() == 1)
-            return stack;
-
-        stack.setCount((int) Math.min(Integer.MAX_VALUE, Math.round(stack.getCount() * finalScale)));
         return stack;
     }
 

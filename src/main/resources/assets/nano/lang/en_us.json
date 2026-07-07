@@ -10,6 +10,9 @@
     "screen.nano.scale_combiner.title": "Scale Combiner",
     "screen.nano.scale_normalizer.title": "Scale Normalizer",
 
+    "screen.nano.nomidnightlib.button.exit.text": "Exit",
+    "screen.nano.nomidnightlib.label.help.text": "Nano's configuration screen requires midnight lib to be installed",
+
     "component.nano.item_scale.tooltip": "Scale: %1$s",
     "commands.nano.nano.fail": "No nano commands have been registered! Did you forget to add the mod nano-commands?",
     "commands.nano.nano.success": "Mod nano-commands is successfully installed",
@@ -25,5 +28,53 @@
     "itemGroup.nano.nano": "Nano",
 
     "block.nano.scale_combiner": "Scale Combiner",
-    "block.nano.scale_normalizer": "Scale Normalizer"
+    "block.nano.scale_normalizer": "Scale Normalizer",
+
+
+    "nano.midnightconfig.title": "Nano",
+
+    "nano.midnightconfig.category.food": "Food",
+    "nano.midnightconfig.category.item": "Items",
+    "nano.midnightconfig.category.loot": "Loot",
+    "nano.midnightconfig.category.pathfinding": "Pathing",
+    "nano.midnightconfig.category.scale_modifiers": "Modifiers",
+    "nano.midnightconfig.category.sound": "Sound",
+    "nano.midnightconfig.category.stepping": "Stepping",
+    "nano.midnightconfig.category.xp": "Xp",
+    "nano.midnightconfig.category.integration": "Integrations",
+    
+    
+    "nano.midnightconfig.foodScalingEnabled": "Scaling Enabled",
+    "nano.midnightconfig.foodNutritionScalingEnabled": "Nutrition Scaling Enabled",
+    "nano.midnightconfig.foodSaturationScalingEnabled": "Saturation Scaling Enabled",
+    "nano.midnightconfig.overeatingEnabled": "Overeating Enabled",
+    "nano.midnightconfig.overeatingThreshold": "Overeating Threshold",
+
+    "nano.midnightconfig.itemScalingEnabled": "Scaling Enabled",
+    "nano.midnightconfig.itemDropScalingEnabled": "Drop Scaling Enabled",
+
+    "nano.midnightconfig.lootScalingEnabled": "Scaling Enabled",
+
+    "nano.midnightconfig.pathfindingScalingEnabled": "Scaling Enabled",
+    "nano.midnightconfig.pathfindingMinimumScalingEnabled": "Minimum Scaling Enabled",
+
+    "nano.midnightconfig.scaleModifiersEnabled": "Enabled",
+    "nano.midnightconfig.knockbackScaleModifierEnabled": "Knockback Enabled",
+    "nano.midnightconfig.heldItemScaleModifierEnabled": "Held Item Enabled",
+    "nano.midnightconfig.dropsBaseScaleModifierEnabled": "Item Drops Enabled",
+    "nano.midnightconfig.attackDamageScaleModifierEnabled": "Attack Damage Enabled",
+    "nano.midnightconfig.attackSpeedScaleModifierEnabled": "Attack Speed Enabled",
+    "nano.midnightconfig.miningSpeedScaleModifierEnabled": "Mining Speed Enabled",
+
+    "nano.midnightconfig.soundScalingEnabled": "Scaling Enabled",
+    "nano.midnightconfig.growthSoundsEnabled": "Growth Enabled",
+    "nano.midnightconfig.longGrowthSoundsEnabled": "Long Growth Enabled",
+
+    "nano.midnightconfig.damageEnabled": "Damage Enabled",
+    "nano.midnightconfig.damageRelativeHeightThreshold": "Damage Relative Height Threshold",
+
+    "nano.midnightconfig.xpScalingEnabled": "Scaling Enabled",
+
+    "nano.midnightconfig.appleSkinIntegrationEnabled": "Apple Skin Enabled",
+    "nano.midnightconfig.bodyOffsetScalingEnabled": "First Person Model Body Offset Scaling Enabled"
 }

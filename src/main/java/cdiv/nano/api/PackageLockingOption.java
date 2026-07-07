@@ -13,6 +13,7 @@ public class PackageLockingOption<T> extends BaseLockingOption<T> {
      * Constructs a new {@link PackageLockingOption} with a null value
      * @see Option#Option()
      */
+    @SuppressWarnings("unused")
     @ApiStatus.Internal
     public PackageLockingOption() {
         super();
@@ -34,6 +35,7 @@ public class PackageLockingOption<T> extends BaseLockingOption<T> {
      * @param value The default value
      * @see Option#Option(int, Object)
      */
+    @SuppressWarnings("unused")
     @ApiStatus.Internal
     public PackageLockingOption(final int priority, @Nullable final T value) {
         super(priority, value);
@@ -42,6 +44,7 @@ public class PackageLockingOption<T> extends BaseLockingOption<T> {
     /**
      * Locks the option preventing its value and priority from being changed
      */
+    @SuppressWarnings("unused")
     @ApiStatus.Internal
     public synchronized boolean lock() {
         return super.baseLock();

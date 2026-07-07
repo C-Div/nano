@@ -1,9 +1,9 @@
 package cdiv.nano.client.api.screens;
 
 import cdiv.nano.api.Option;
-import cdiv.nano.client.api.screens.spurt.SpurtModeUI;
 import cdiv.nano.client.api.screens.spurt.SpurtModeUIType;
 import cdiv.nano.client.screens.roleplay.spurt.TestMode;
+import cdiv.nano.client.api.screens.spurt.SpurtModeUI;
 
 import java.util.LinkedList;
 import java.util.List;

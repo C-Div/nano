@@ -1,7 +1,7 @@
 package cdiv.nano.client.mixin;
 
 import cdiv.nano.Sounds;
-import cdiv.nano.client.api.config.Sound;
+import cdiv.nano.api.client.config.Sound;
 import cdiv.nano.client.sounds.GrowthSound;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.MinecraftClient;

@@ -1,7 +1,7 @@
 package cdiv.nano.client.screens.roleplay;
 
-import cdiv.nano.client.api.screens.spurt.SpurtModeUI;
 import cdiv.nano.client.api.screens.Spurt;
+import cdiv.nano.client.api.screens.spurt.SpurtModeUI;
 import cdiv.nano.client.util.screen.BoundDimensions;
 import cdiv.nano.client.util.screen.CachingDimensions;
 import cdiv.nano.client.util.screen.Screen;

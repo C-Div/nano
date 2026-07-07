@@ -2,7 +2,7 @@ package cdiv.nano.client.integration;
 
 import cdiv.nano.Components;
 import cdiv.nano.api.config.Food;
-import cdiv.nano.client.api.config.AppleSkin;
+import cdiv.nano.api.client.config.AppleSkin;
 import cdiv.nano.util.helper.ItemHelper;
 import cdiv.nano.registry.Registries;
 import net.minecraft.component.type.FoodComponent;
@@ -16,7 +16,8 @@ public class AppleSkinIntegration implements AppleSkinApi {
     @Override
     public void registerEvents() {
         FoodValuesEvent.EVENT.register(foodValues -> {
-            if (!AppleSkin.integrationEnabled.get() || (!Food.foodNutritionScalingEnabled.get() && !Food.foodSaturationScalingEnabled.get()))
+            if (Boolean.FALSE.equals(AppleSkin.integrationEnabled.get())
+                || (Boolean.FALSE.equals(Food.foodNutritionScalingEnabled.get()) && Boolean.FALSE.equals(Food.foodSaturationScalingEnabled.get())))
                 return;
 
             ItemStack itemStack = foodValues.itemStack;
@@ -30,11 +31,11 @@ public class AppleSkinIntegration implements AppleSkinApi {
             final FoodComponent modifiedFoodComponent = foodValues.modifiedFoodComponent;
             final double relativeScale = itemScale / ScaleTypes.BASE.getScaleData(foodValues.player).getScale();
 
-            final int relativeNutritionGain = (Food.foodNutritionScalingEnabled.get())
+            final int relativeNutritionGain = (Boolean.TRUE.equals(Food.foodNutritionScalingEnabled.get()))
                 ? (int) Math.round(defaultFoodComponent.nutrition() * relativeScale) - defaultFoodComponent.nutrition()
                 : defaultFoodComponent.nutrition();
 
-            final float relativeSaturationGain = (Food.foodSaturationScalingEnabled.get())
+            final float relativeSaturationGain = (Boolean.TRUE.equals(Food.foodSaturationScalingEnabled.get()))
                 ? (float) (defaultFoodComponent.saturation() * relativeScale) -  defaultFoodComponent.saturation()
                 : defaultFoodComponent.saturation();
 

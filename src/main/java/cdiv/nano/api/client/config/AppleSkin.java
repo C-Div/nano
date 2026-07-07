@@ -1,4 +1,4 @@
-package cdiv.nano.client.api.config;
+package cdiv.nano.api.client.config;
 
 import cdiv.nano.api.Option;
 

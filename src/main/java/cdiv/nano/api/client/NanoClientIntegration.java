@@ -1,4 +1,4 @@
-package cdiv.nano.client.api;
+package cdiv.nano.api.client;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
